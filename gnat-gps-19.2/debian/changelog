@@ -1,0 +1,1018 @@
+gnat-gps (19.2-3ubuntu2) focal; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+    - Build with -O2 on ppc64el (avoiding a FTBFS).
+  * Build on armhf as well.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 26 Feb 2020 08:00:33 +0100
+
+gnat-gps (19.2-3) unstable; urgency=medium
+
+  * Reupload to unstable for gnat-9 transition.
+  * Use Debhelper 12 dh-sequence- syntax in Build-Dependencies.
+  * Standards-Version: 4.5.0.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 25 Feb 2020 19:05:42 +0100
+
+gnat-gps (19.2-2) experimental; urgency=medium
+
+  * Fix project name for renamed libgpr -> libgnatprj.
+  * Fix creation of javascript symbolic links. Closes: #947268.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 31 Dec 2019 12:09:26 +0100
+
+gnat-gps (19.2-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Download from git, upstream does not release tarballs anymore.
+    Repackage with a script, instead of Files-Excluded.
+    Remove VCS stuff, empty directories, silly permissions.
+    Remove javascript libs and depend on without dh_linktree.
+  * Debhelper 12 does not compress examples anymore.
+  * Rebuild with gcc-9 and updated dependencies. Closes: #925699.
+  * Split -arch and -indep dependencies.
+  * Standard-Versions 4.4.1.
+  * Move VCS to salsa.debian.org.
+  * Rewrite the clang wrapper generator patch.
+  * Sort files in refreshed patches.
+  * Remove linker options only making sense with libraries.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sat, 21 Dec 2019 17:07:58 +0100
+
+gnat-gps (18-5ubuntu1) disco; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Build with -O2 on ppc64el (avoiding a FTBFS).
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 11 Dec 2018 22:05:04 +0100
+
+gnat-gps (18-5) unstable; urgency=medium
+
+  * Disable 32 bits builds, affected by #913371.
+    The problem was hidden by some 64 bits chroot.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 11 Dec 2018 14:43:22 +0100
+
+gnat-gps (18-4ubuntu1) disco; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Build with -O2 on ppc64el (avoiding a FTBFS).
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 03 Dec 2018 20:00:37 +0100
+
+gnat-gps (18-4) unstable; urgency=medium
+
+  * Stop attempting to build on armel mips mipsel to circumvent #913371.
+  * Reenable parallelism.
+  * Update the copyright year in documentation automatically.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 02 Dec 2018 21:32:20 +0100
+
+gnat-gps (18-3ubuntu1) disco; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Build with -O2 on ppc64el (avoiding a FTBFS).
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 01 Dec 2018 05:29:17 +0100
+
+gnat-gps (18-3) unstable; urgency=medium
+
+  * On 32 bits archs, forbid parallelism to use less memory. Closes: 913371.
+  * Link with --as-needed and similar options.
+  * Standards-Version: 4.2.1.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 11 Nov 2018 11:49:30 +0100
+
+gnat-gps (18-2ubuntu2) disco; urgency=medium
+
+  * Build with -O2 on ppc64el (avoiding a FTBFS).
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 12 Nov 2018 08:11:11 +0100
+
+gnat-gps (18-2ubuntu1) disco; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 10 Nov 2018 21:58:49 +0100
+
+gnat-gps (18-2) unstable; urgency=medium
+
+  * Rebuild in unstable for gnat-8 transition.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sat, 27 Oct 2018 15:09:46 +0200
+
+gnat-gps (18-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Replace gnatcoll_gtk dependency with gnatcoll_extras subdirectory.
+    Directly depend on python-gi-dev, libpython2.7-dev.
+  * New valgrind binding, only used on amd64 and i386.
+  * Standards-Version: 4.2.0. Rules-Requires-Root: no.
+  * Drop obsolete Break/Replace.
+  * New documentation docs/release_notes_62.
+  * Fix diff offset gnatdoc.diff, see end of bug log for #861616.
+  * Build with gnatcoll_sqlite2ada instead of obsolete gnatcoll_db2ada.
+  * Enable parallel documentation build now that #869098 is fixed.
+  * Fix permissions for tomorrow GTK theme.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 07 Aug 2018 07:46:16 +0200
+
+gnat-gps (17.0.2017-2) experimental; urgency=medium
+
+  * Rebuild with gnat-8 and updated xmlada, gpr1, gtkada, gnatcoll.
+    Cherry-pick two upstream commits fixing new errors.
+    Remove -lstdc++ from linker options for libclang.
+  * Remove watch file and explain why in README.source.
+  * Update upstream Homepage.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Thu, 10 May 2018 12:33:19 +0200
+
+gnat-gps (17.0.2017-1ubuntu1) cosmic; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 04 May 2018 09:41:41 +0200
+
+gnat-gps (17.0.2017-1) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Add sphinxdoc substvar for Built-Using.
+  * Standards-Version: 4.1.4.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 24 Apr 2018 17:58:35 +0200
+
+gnat-gps (17.0.2017-1~exp1) experimental; urgency=medium
+
+  [Nicolas Boulenguez]
+  * New upstream release GPL-2017.
+    Drop packaging for gnatspark executable.
+    Regenerate database Ada sources. Build-Depend: libgnatcoll-sqlite-bin.
+    Package new release_notes_17 documentation.
+    Disable libadalang support, dependency is not packaged.
+  * Re-enable clang support, seems to link correctly now. Update to 3.8.
+  * Build-Depends: drop obsolete version restriction on dpkg-dev.
+  * Debheper 11. Simplifies installation of documentation.
+  * gtk3-incompatibility.diff: goes with libgtkada17.0-dev, fixing
+    gtkada with recent gtk3.
+  * Build-Depend: python3-sphinx instead of deprecated python2 version.
+  * Fix many incompatibilities with python3. Build-Depend: python*-six.
+    Gather all python3-related fixes in a single diff to ease rebasing.
+  * Remove trailing whitespaces in this changelog.
+  * Tell lintian that welcome.html does not need doc-base registration.
+  * Remove __pycache__ directories after removing .pyc contents.
+  * Remove execution rights for some python modules.
+  * Standards-Version: 4.1.3. No changes.
+  * Allow gnat-gps-doc to satisfy Multi-Arch foreign dependencies.
+
+  [Thierry Rascle <thierr26@free.fr>]
+  * gnatdoc.diff closes: #861616.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 04 Mar 2018 00:05:32 +0100
+
+gnat-gps (6.1.2016-1ubuntu1) artful; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 02 Sep 2017 00:02:08 +0200
+
+gnat-gps (6.1.2016-1) unstable; urgency=medium
+
+  * New upstream release GPL-2016.
+    Disable new CLang module because it causes a link failure.
+  * New files with the Expat license.
+  * Build against latest gnatcoll, gtkada, templates-parser, xmlada.
+    Replace libgnatprj, removed from GCC, with gpr from gprbuild.
+    Patches to use Debian versions of gnatcoll and gpr.
+  * Build-Depend: gnatcoll-xref (new), latexmk (for sphinx PDF module),
+    texlive-plain-generic (renaming).
+  * Update icon reference in desktop file. Closes: #855649.
+  * Prettier watch file with version 4 format.
+  * Debhelper 10.
+  * PDFLaTeX now deals with SOURCE_DATE_EPOCH without faketime.
+  * Standards-Version: 4.1.0.
+    HTTPS copyright format URL. Allow DEB_BUILD_OPTIONS=nodoc
+  * Update Vcs-Mtn URL.
+  * Drop obsolete preinst scripts, 5.0-13 not in oldstable anymore.
+  * Disable sphinx parallelism because of #869098.
+  * Fix various typos or file permissions.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Wed, 23 Aug 2017 10:06:52 +0200
+
+gnat-gps (6.1.1-1ubuntu2) zesty; urgency=medium
+
+  * No-change rebuild for ada transition.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 07 Apr 2017 08:04:46 -0600
+
+gnat-gps (6.1.1-1ubuntu1) yakkety; urgency=medium
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control: gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 05 Aug 2016 10:32:37 +0200
+
+gnat-gps (6.1.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Build with gnat-6. Closes: #830379.
+    Build-Depends on xmlada_dom gnatcoll_sqlite gprbuild,
+    but not on texinfo imagemagick texlive-generic-recommended.
+    Move dh-linktree and sphinx-common from Build-Depends to B-D-Indep.
+    Depend: python-gi for default GUI.
+    Recommend: python-jedi and -pep8 to prevent warnings in default startup.
+    Stop Recommending obsolete gprbuild-doc.
+  * Use Adacore uscan redirector and Files-Excluded to simplify updates.
+  * New executables: gnatdoc (formerly docgen) gnatspark gps_cli.
+  * docs in PDF and HTML formats thanks to sphinxdoc.
+    Build-Depend: texlive-generic-extra for iftex.sty. Closes: #829676.
+    Move docs/gps-welcome.html from -doc to -common, as gnat-gps requires it.
+  * Freeze the clock for deterministic PDF timestamps.
+  * Standards-Version: 3.9.8: replace menu file with desktop file.
+  * Replace manual -dbg packages with automatic -dbgsym packages.
+  * Enable all hardening options.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Fri, 29 Jul 2016 12:20:04 +0200
+
+gnat-gps (5.3dfsg-1ubuntu1) vivid; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control:
+      + gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Artur Rona <ari-tczew@ubuntu.com>  Fri, 09 Jan 2015 23:38:21 +0100
+
+gnat-gps (5.3dfsg-1) unstable; urgency=medium
+
+  * Repackage with correct licensing for documentation. Closes: #768547.
+    copyright: the user's guide is licensed under GFDL-1.1+.
+    README.source: archive now compressed with xz instead of bz2 (-33%).
+    Remove obsolete lintian-overrides and separate doc copyright.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 09 Nov 2014 21:34:18 +0100
+
+gnat-gps (5.3-4ubuntu1) utopic; urgency=medium
+
+  * gnat-gps: Recommend gdb | gdb-minimal.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 15 Oct 2014 15:45:19 +0200
+
+gnat-gps (5.3-4) unstable; urgency=medium
+
+  * Built against packaged gnatcoll instead of embedded copy.
+    Move /usr/bin/gnatinspect from gnat-gps to libgnatcool-sqlite-bin.
+  * Remove unused sources from build_gps.gpr and debian/rules.
+  * Replace get-orig-source target with detailed instructions in
+    README.source. Give script used to merge_upstream_into_dfsg.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 02 Sep 2014 00:20:03 +0200
+
+gnat-gps (5.3-3) unstable; urgency=medium
+
+  * Build with xmlada5-dev, templates-parser-11.8.2015-dev. Closes: #757620.
+  * Let -doc Recommend current version of the ada-reference-manual.
+  * Use dh_sphinxdoc and dh_linktrees to avoid embedding javascript libraries.
+  * Uploaders: update Xavier's email.
+  * Manual page for gnatinspect.
+  * Standards-Version: 3.9.5 (no changes).
+  * -doc: lintian override for false positive (extra-license-file).
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 19 Aug 2014 07:13:26 +0200
+
+gnat-gps (5.3-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Build-depend on texlive-latex-extra. Closes: #755311.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 05 Aug 2014 00:38:40 +0200
+
+gnat-gps (5.3-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Build-depend on texlive-latex-recommended. Closes: #755311.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 05 Aug 2014 00:38:40 +0200
+
+gnat-gps (5.3-2) unstable; urgency=low
+
+  * debian/gnat-gps-doc.install: install images in only one place.
+  * debian/gnat-gps-doc.doc-base.*: adjust to upstream changes i.e. no
+    text format anymore.  Closes: #754069.
+  * debian/build_gps.gpr: do not work around compiler bug #642981 which
+    has been fixed since gnat-4.8.
+  * debian/build_gnatinspect.gpr, debian/rules: build gnatinspect too.
+  * debian/gnat-gps.install: install it.  Closes: #754320.
+  * debian/control (Build-Depends): add libreadline-dev, needed by
+    gnatinspect.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Thu, 10 Jul 2014 20:19:26 +0200
+
+gnat-gps (5.3-1) unstable; urgency=medium
+
+  [Nicolas Boulenguez]
+  * New upstream snapshot (Subversion revision 212731 of 2013-07-10),
+    chosen because it precedes the switch to GtkAda 3.x;
+    built with gnat 4.9, xmlada 4.4.0puregpl, templates-parser
+    11.8.2014. gtkada 2.24.4.  License update GPL-2+ -> GPL-3+.
+
+  [Ludovic Brenta]
+  * Refresh patches.
+  * debian/rules (.../config.ads.in): adjust to new upstream release.
+    (DIRS_WITH_C_SOURCES): ditto.
+    (override_dh_auto_build-indep): Do not build Info manuals anymore;
+    they have been abandoned upstream.
+  * debian/build_gps.gpr: s/gtkada2/gtkada/ and adjust directories.
+  * debian/patches/gnat-4.9.patch: new.
+  * debian/control (Build-Depends): add libsqlite3-dev.
+    (Build-Depends-Indep): add python-sphinx (to generate the doc) and
+    graphviz (to generate graphs in the doc).
+  * debian/gnat-gps-{common,doc}.install: adjust to upstream changes.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Mon,  7 Jul 2014 00:18:29 +0200
+
+gnat-gps (5.0-16) unstable; urgency=low
+
+  * rules: simplified using debhelper 9.
+    Link C objects directly, without intermediate static archive.
+    Add missing substitutions in config.ads.
+  * patches: refreshed without timestamps.
+  * copyright, patches/texinfo: GPL-2+ instead of GNU GFDL. Closes: #708932.
+  * lintian-overrides: a patch removing a non DFSG license must contain it
+  * install all documentation in a single /usr/share/doc/gnat-gps directory.
+  * Revert to parallel build. Timeout is more frequent than RAM exhaustion.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Thu, 18 Jul 2013 00:55:58 +0200
+
+gnat-gps (5.0-15) unstable; urgency=low
+
+  * rules: add -lutil to link options, avoiding a FTBFS on kfreebsd-*.
+    Default to parallel=1 to avoid exhausting the RAM on limited buildds.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Mon, 15 Jul 2013 23:20:21 +0200
+
+gnat-gps (5.0-14) unstable; urgency=low
+
+  * patches/documentation-formats: fix incompatibilities with texinfo 5.
+    Ignore docs/texiplus.tex. Closes: #712323.
+  * Move debian/TODO,known-problems,features from gnat-gps to -doc package.
+  * control (DM-Upload-Allowed): removed obsolete field.
+    (Build-Depends): pkg-config. Closes: #685071.
+    (Standards-Version): 3.9.4 (no change needed)
+  * menu -> gnat-gps.menu: for clarity.
+  * README.source, build_gps.gpr, copyright, rules: copyright update.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sat, 06 Jul 2013 22:08:20 +0200
+
+gnat-gps (5.0-13) unstable; urgency=low
+
+  * Avoid symlinking documentation directories (Closes: #684194).
+
+ -- Nicolas Boulenguez <nicolas.boulenguez@free.fr>  Thu, 16 Aug 2012 12:40:48 +0200
+
+gnat-gps (5.0-12) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * debian/patches/gprconfig.patch: new.  Properly handle the exception
+    signalling that gprconfig is absent from the $PATH.  Closes: #682229.
+
+  [Ludovic Brenta]
+  * debian/control: Suggest gprconfig.
+
+  [Svante Signell]
+  * debian/patches/hurd-i386.patch: new. Add support for hurd-i386.
+    Closes: #682001.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Fri, 20 Jul 2012 23:33:46 +0200
+
+gnat-gps (5.0-11) unstable; urgency=low
+
+  * control: -doc Recommends ada-reference-manual-2005 instead of obsolete
+    package name (Closes: #677279)
+  * rules, build.gpr: better flag transmission (LDFLAGS was ignored).
+
+ -- Nicolas Boulenguez <nicolas.boulenguez@free.fr>  Thu, 14 Jun 2012 00:44:35 +0200
+
+gnat-gps (5.0-10) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * debian/copyright: updated Format and packaging years.
+  * debian/source.lintian-overrides: removed obsolete ones.
+  * Updated doc directories according to package split.
+
+  [Ludovic Brenta]
+  * debian/control (DM-Upload-Allowed): yes.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 19 May 2012 14:39:42 +0200
+
+gnat-gps (5.0-9) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * control, rules: rely on the Makefile snippet provided in
+    dh-ada-library to handle DEB_BUILD_OPTIONS=parallel=n and set
+    CC=gnatgcc LDFLAGS+=--as-needed (Closes: #669083).
+
+  [Ludovic Brenta]
+  * debian/control (Standards-Version): 3.9.3, no changes required.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun,  6 May 2012 12:54:59 +0200
+
+gnat-gps (5.0-8) unstable; urgency=low
+
+  * debian/patches/bug-653470.patch: remove.
+  * debian/rules (config.ads): set the Default_Charset variable.
+    Compile all C source files with the same compiler as the Ada source
+    files, i.e. gnatgcc instead of $(CC).
+  * debian/patches/bug-666958.patch: new.  Closes: #666958.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Mon,  9 Apr 2012 15:32:28 +0200
+
+gnat-gps (5.0-7) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * debian/control (Build-Depends), debian/build_gps.gpr:
+    drop tcl8.4-dev, libdb-dev; not used anymore.
+  * control, rules: let dpkg-dev (>= 1.16) set CFLAGS, DEB_VERSION.
+  * switched to dh_linktree helper for linked javascript libraries.
+  * copyright: typo.
+
+  [Ludovic Brenta]
+  * debian/control (Recommends): s/gdb/gdb-minimal/.  Closes: #659166.
+    Thanks to Nicolas Boulenguez for the workaround.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 11 Feb 2012 19:41:04 +0100
+
+gnat-gps (5.0-6) unstable; urgency=low
+
+  * Rebuild against libgtkada 2.24.1.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 15 Jan 2012 15:42:21 +0100
+
+gnat-gps (5.0-5) unstable; urgency=low
+
+  [ Ludovic Brenta ]
+  * Fix bug: "Project Editor > Make hangs gnat-gps":
+    - debian/patches/project_editor_make.patch: new.
+  * Fix bug: "No GNAT switches in the project editor (#596385 reintroduced)":
+    - debian/rules: add an empty file
+      share/gps/plug-ins/gps_utils/gnat_switches.py to gnat-gps-common.
+    - debian/clean: delete it.
+    - debian/control (gnat-gps): recommend python-gtk2.0.
+  * debian/TODO: make empty as all remaining bugs are fixed.
+  * Fix Lintian errors and warnings:
+    - debian/control (gnat-gps): depend on gnat-gps-common (= ${source:Version})
+      instead of ${binary:Version}.
+
+  [ Nicolas Boulenguez ]
+  * debian/rules: link gnat-gps and -dbg documentation directory to
+    -common, but not -doc, avoiding a circular dependency.  Closes: #655383.
+  * debian/control: s/Conflicts/Breaks/ for package split (policy 7.6.1).
+  * debian/control (Depends), debian/gnat-gps-common.links: use system-wide
+    javascript library instead of upstream copy, if available.
+  * gnat-gps-doc.lintian-overrides (modified),
+    gnat-gps.lintian-overrides -> gnat-gps-common.lintian-overrides:
+      adapted to source package split.
+
+ -- Nicolas Boulenguez <nicolas.boulenguez@free.fr>  Wed, 11 Jan 2012 02:00:46 +0100
+
+gnat-gps (5.0-4) unstable; urgency=low
+
+  * debian/patches/libgtkada2-2.24.0-dev-part2.patch: rewrite completely;
+    keep using the Gtk.Combo.
+  * debian/patches/file_selector.patch: delete.
+  * debian/patches/bug-653470.patch: remove all calls to Glib.Convert.
+    Locale_To_UTF8 in all source files.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Tue,  3 Jan 2012 18:20:30 +0100
+
+gnat-gps (5.0-3) unstable; urgency=low
+
+  * debian/control (gnat-gps-common): Conflict with and Replace gnat-gps (< 5.0).
+    Closes: #653425.
+    (Build-Depends): remove libgmp-dev, not actually used.
+  * debian/rules (DIRS_WITH_C_SOURCES): remove gnatlib/src/gmp, not
+    actually used.
+  * debian/build_gps.gpr: work around compiler bug #642981 on armel by
+    disabling inlining in select source files.
+  * debian/patches/bug-653470.patch: new.  Closes: #653470.
+  * debian/gnat-gps-common.install: install the docgen2 files in /usr/share/gps.
+  * debian/patches/file_selector.patch: new; allow the file selector to
+    open itself.  There is still a bug though, see below.
+  * debian/TODO: new.  Document known bugs to be solved before the package
+    is fit for release.  Help is welcome as usual, see #496905.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Mon,  2 Jan 2012 12:33:10 +0100
+
+gnat-gps (5.0-2) unstable; urgency=low
+
+  * debian/control (Build-Depends): add libgmp-dev.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Wed, 28 Dec 2011 01:40:34 +0100
+
+gnat-gps (5.0-1) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * New upstream version from upstream's Subversion repository, revision 165249
+    (date: 2010-10-01T15:03:16).
+  * Build with gnat-4.6.  Closes: #642618.
+  * Upgraded to debhelper 8 and Standards-Version 3.9.2.
+  * control: reformatted descriptions to please lintian
+  * rules: allowed transmission of new targets to dh
+  * rules, patches: link against system libdb instead of embedded db source
+
+  [Ludovic Brenta]
+  * debian/patches/command-names.patch,
+    debian/patches/gcc-4.4.patch,
+    debian/patches/libgtkada2-2.14.2.patch,
+    debian/patches/no-tcl.patch,
+    debian/patches/use_system_libdb.patch,
+    debian/patches/no-gtkextra.patch,
+    debian/patches/fix-config-guess.patch,
+    debian/patches/escape_embedded_xml_in_ada_support_py.patch: delete, no longer needed.
+  * debian/patches/documentation-path.patch,
+    debian/patches/texinfo.patch,
+    debian/patches/elaboration.patch,
+    debian/patches/documentation-formats.patch
+    debian/patches/bashisms.patch: refresh.
+  * debian/patches/libgtkada2.24.0-part[123].patch: new.
+  * debian/control: gnat-gps-doc now recommends ada-reference-manual-html and
+    gprbuild-doc, both referenced in the Documentation menu of GPS.
+    (gnat-gps-common): new package for architecture:all files.
+  * debian/rules: do not build Source Navigator, which is no longer bundled.
+  * debian/build_gps.gpr: adjust to new source directories.
+  * debian/gnat-gps.install: do not install auxiliary executables built from
+    Source Navigator sources which are no longer bundled.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Tue, 27 Dec 2011 11:56:14 +0100
+
+gnat-gps (4.3-6) unstable; urgency=low
+
+  * control (Vcs-Mtn) corrected URL
+    (Architectures) any like all ada packages.
+    see http://lists.debian.org/debian-ada/2010/02/msg00002.html
+    (Standards-Version) 3.9.1.0 without changes.
+  * Patch allowing many jobs for pdf doc generation. Closes: #599489.
+  * Install aunit templates. Closes: #599487.
+  * Patch escape embedded XML in ada_support.py. Closes: #596385.
+    All patches from Pierre-Louis Bonicoli <pierre-louis.bonicoli@gmx.fr>.
+  * source/[local-]options to tell dpkg-source to ignore VCS information.
+
+ -- Nicolas Boulenguez <nicolas.boulenguez@free.fr>  Sun, 30 Jan 2011 01:15:33 +0100
+
+gnat-gps (4.3-5) unstable; urgency=low
+
+  [Nicolas Boulenguez]
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * control: (Standards-Version) upgraded without changes.
+    (Build-Depends) quilt is not needed with this format.
+  * rules: made linking with cairo and gtk explicit. Closes: #554643.
+
+  [Ludovic Brenta]
+  * debian/patches/add_project_file.patch, debian/rules: link against
+    whichever version of libpython is the default.  Closes: #571489.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Thu, 25 Feb 2010 23:32:43 +0100
+
+gnat-gps (4.3-4) unstable; urgency=medium
+
+  * debian/control (Architectures):
+    - temporarily disable mips due to #566234, which affects
+      libtemplates-parser, on which gnat-gps depends.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun,  7 Feb 2010 23:02:28 +0100
+
+gnat-gps (4.3-3) unstable; urgency=low
+
+  * Added two patches
+    - bug-567688.patch to fix termio.h problem, same bug as gnat-4.4 564232.
+    Closes: #567668.
+    - fix-config-guess.patch, config.guess from upstream didn't know about
+    GNU/kFreeBSD for uname -s.
+
+ -- Xavier Grave <xavier.grave@ipno.in2p3.fr>  Sun, 31 Jan 2010 00:29:00 +0100
+
+gnat-gps (4.3-2) unstable; urgency=low
+
+  * debian/rules: do not build the doc as part of binary-arch.
+    Closes: #567526.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Fri, 29 Jan 2010 20:56:13 +0100
+
+gnat-gps (4.3-1) unstable; urgency=low
+
+  [Ludovic Brenta]
+  * New version from upstream's Subversion repository, revision 131177
+    (date: 2008-10-21T16:46:48) with additional changes as follows:
+    - Pluck HA14-009 from the trunk and apply to the 4.3 branch, like AdaCore.
+    - Pluck the fix for HA05-007 from the trunk.
+    - Pluck the fix for D502-003 from the trunk.
+    - Pluck the fix for E703-001 from the trunk.
+    - Pluck fix for HB13-014 from the trunk.
+    - Pluck fix for H904-015 from the trunk.
+    - Pluck HB17-006 from the trunk.
+    - Pluck HB04-009 from the trunk.
+    - Pluck FB07-017 from the trunk.
+    (for more details, see distrib/known-problems in the .orig.tar.gz and
+    README.source)
+  * debian/control (Build-Depends):
+    - switch to gnat-4.4, libgnatvsn4.4-dev, libgnatprj4.4-dev. Closes: #560680.
+    - switch to libgtkada2.14.2-dev and libtemplates-parser11.5-dev.
+    - switch to debhelper version 7.
+    (Depends): add ${misc:Depends} everywhere.
+    (Standards-Version): bump to 3.8.3 with no changes required.
+    (Architecture):
+    - add kfreebsd-amd64.
+    - remove alpha due to http://gcc.gnu.org/PR43072.
+  * debian/compat: new, equal to 7.
+  * debian/rules (DH_COMPAT): remove.
+    - fix the parsing of the version from the changelog. Closes: #497596.
+  * debian/patches/libgtkada2-2.14.2.patch: new.
+  * debian/patches/no-gtkextra.patch: new, pluck revision 134974 from the trunk.
+  * debian/menu: change Apps to Applications.  Closes: #530481.
+  * debian/source.lintian-overrides: new.
+  * debian/README.source: expand.
+  * debian/copyright:
+    - make machine-parseable (DEP5).
+    - add copyright information for the bundled copy of Source Navigator
+    - add copyright information for the bundled copy of Berkeley DB
+  * debian/gnat-gps.install: also install features and known-problems into
+    /usr/share/doc/gnat-gps.
+
+  [Nicolas Boulenguez]
+  * Moved patches to debian/patches and modified series to use patch without
+    option -p0.  Closes: #538543.
+  * rules: simplified with quit.make and separate debhelper files.
+  * Replaced gps.gpr file with a patch creating it.
+  * control:
+    (Build-Depends) removed indirect redundancies.
+    (Vcs-Browser,Vcs-Svn,Homepage) added.
+  * copyright: versioned GPL
+  * patches: documented each
+  * lintian-overrides: accept empty dirs (for user hooks or example objects)
+  * debian/README.source: expand.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Fri, 29 Jan 2010 01:06:46 +0100
+
+gnat-gps (4.3~2008.08.09) unstable; urgency=low
+
+  * New version from upstream's Subversion repository, revision 127639.
+  * Build with GCC 4.3 and GtkAda 2.12. Closes: #445772, #468310.
+  * Add support for mips, mipsel and ppc64.
+  * Transition from python2.4 to whatever new version of Python is the
+    default.  Closes: #493850.
+  * patches/gcc-4.3.patch: new; adjust to GCC 4.3.
+  * patches/bashisms.patch: new.
+  * patches/gcc-4.1.patch,
+    patches/gtkada-2.8.1.patch,
+    patches/memory-corruption.patch,
+    patches/python-customisation.patch: delete, obsolete.
+  * patches/*.patch: adjust to the new upstream version.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Wed, 13 Aug 2008 16:07:09 +0200
+
+gnat-gps (4.0.1-6) unstable; urgency=low
+
+  * debian/control: build-depend-indep on texlive-generic-recommended,
+    too.  Closes: #443030.  Thanks to Cyril Brulebois for investigating.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 29 Sep 2007 14:46:34 +0200
+
+gnat-gps (4.0.1-5) unstable; urgency=low
+
+  * debian/control: build-depend-indep on texlive-latex-base.
+    Closes: #436368.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Wed, 22 Aug 2007 21:46:27 +0200
+
+gnat-gps (4.0.1-4) unstable; urgency=low
+
+  * debian/rules: install the HTML documentation generated from gps.texi.
+    Closes: #423231.
+  * patches/command-names.patch: apply fix from Teemu Ikonen.  Thanks!
+    Closes: #435544.
+  * patches/command-names.patch (gvd-process.adb): change the default
+    debugger command to gnatgdb.  Closes: #414614.  Also fix a typo.
+  * debian/control: transition to tetex-live.
+  * patches/gtkada-2.8.1.patch: adjust to 2.8.1-6, replacing "or" with "+"
+    when adding values of a bitfield.
+  * patches/documentation-formats.patch: new.  Provide a PDF version of
+    the tutorial, and a text version of the programmer's guide, too.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat,  4 Aug 2007 18:52:26 +0200
+
+gnat-gps (4.0.1-3) unstable; urgency=low
+
+  * debian/gps.gpr: revert to -g -O2 -gnatafno -gnatVa and static
+    elaboration checks.
+  * patches/series (dynamically-tagged-expressions.patch): disable.
+  * patches/documentation-path.patch: fix a bug whereby we would look for
+    shell_commands.xml in the wrong directory.  This in turn fixes the
+    Help menu.
+  * patches/memory-corruption.patch: new.  Addresses: #400876, #400883,
+    but does not close them yet because I think the underlying memory
+    corruption bug is still lurking somewhere.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Wed, 29 Nov 2006 22:01:50 +0100
+
+gnat-gps (4.0.1-2) unstable; urgency=medium
+
+  * debian/rules: install all the XML files that describe parts of the
+    GUI.  Closes: #393636, insofar as I no longer see the crashes I
+    described there.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Tue, 28 Nov 2006 22:14:37 +0100
+
+gnat-gps (4.0.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * patches/gtkada-2.8.1.patch: new.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Mon, 27 Nov 2006 22:20:54 +0100
+
+gnat-gps (4.0.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * patches/gcc-4.1.patch: new.
+  * patches/elaboration.patch: adjust for 4.0.0.
+  * debian/rules (config.ads): replace the build date with "Debian".
+    (binary-arch): adjust for images removed in this new version.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 26 Nov 2006 20:41:00 +0100
+
+gnat-gps (3.1.3-5) unstable; urgency=low
+
+  * patches/elaboration.patch: new, a step in resolving #393636.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Fri, 10 Nov 2006 14:59:12 +0100
+
+gnat-gps (3.1.3-4) unstable; urgency=low
+
+  * debian/control (Build-Depends): add debhelper and quilt.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 15 Oct 2006 12:55:47 +0200
+
+gnat-gps (3.1.3-3) unstable; urgency=low
+
+  * debian/control (Build-Depends-Indep): new; move some build dependencies
+    there from Build-Depends.  Add tetex-extra (Closes: #392375).
+    (Build-Depends): remove libxmlada2-dev.
+  * patches/texinfo.patch: fix the info-dir-section of the tutorial
+    (Closes: #391972).  Also, change the name of the info file to
+    gps_tutorial.info, to prevent conflicts with other packages.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 14 Oct 2006 17:03:58 +0200
+
+gnat-gps (3.1.3-2) unstable; urgency=low
+
+  * debian/control (Build-Depends): add libgnatprj-dev, libgnatvsn-dev, and
+    libtemplates-parser-dev.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun,  8 Oct 2006 16:39:07 +0200
+
+gnat-gps (3.1.3-1) unstable; urgency=low
+
+  * New upstream version.
+    - debian/297980.patch: remove, applied upstream.
+    - debian/03-command-line.patch: remove, no longer applies.
+    - debian/10-project-creation-wizard.patch: remove, no longer applies.
+    - gps.gpr (Source_Dirs): adjust.  Also, use all libraries.
+    - debian/rules (DIRS_WITH_C_SOURCES, gvd/common/gvd.ads): adjust.
+    - No longer contains a partial copy of GNAT sources:
+      . debian/01-libgnat-extras.patch: remove.
+      . debian/02-use-libgnat-extras.patch: remove.
+      . remove CONFLICTING_GNAT_SOURCES and related targets from debian/rules.
+    - No longer contains cschtml:
+      . remove debian/323515.patch
+      . remove debian/09-cschtml.patch
+      . remove CSCHTML_OBJECTS and related targets from debian/rules.
+  * Switch to GCC 4.1 as the default Ada compiler.
+    - debian/226513-pretty-printer.patch: remove, GCC 4.1 supports the
+      pretty printer feature.
+    - patches/gcc-4.1.patch: new.
+  * debian/control (Maintainer): update email address, I'm now a full DD.
+    (Uploaders): remove, no longer necessary.
+    (Build-Depends): gnat (>= 4.1), libgkada2 (>= 2.8.1), libasis-dev,
+    libtemplates-parser-dev, libgnatvsn-dev, libgnatprj-dev, quilt,
+    tcl8.4-dev instead of tcl8.3-dev,
+    python-dev instead of python2.3-dev.
+    (Architectures): add alpha, amd64 (Closes: #352368), hppa, ia64, s390.
+  * Use quilt for patches:
+    - debian/rules (patch-stamp, unpatch): use quilt.
+    - debian/04-command-names.patch,
+      debian/05-texinfo.patch,
+      debian/06-documentation-path.patch,
+      debian/07-python-customisation.patch,
+      debian/08-no-tcl.patch: move to patches/; remove the patch numbers.
+    - patches/series: new.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Tue,  3 Oct 2006 09:16:19 +0200
+
+gnat-gps (2.1.0-8) unstable; urgency=low
+
+  * debian/10-project-creation-wizard.patch: new.
+    - When creating a project file with relative path names, GPS makes
+      the paths relative to its current working directory, not to the
+      location of the project file.  Change to that directory to fix
+      that bug.
+    - Do not add a second forward slash between directory name and "**"
+      when Source_Dirs include subdirectories (cosmetic change).
+    - Do not add "for Executable ("x.adb") use "x";" in package Builder
+      when creating a project file because gnat 3.15p does not support
+      the Executable attribute.
+  * debian/rules, gps.gpr: build with debugging information (we call
+    dh_strip when creating the binary package, so that's OK).
+  * debian/control: update Standards-Version to 3.7.2.
+
+ -- Ludovic Brenta <ludovic@ludovic-brenta.org>  Thu,  4 May 2006 22:02:45 +0200
+
+gnat-gps (2.1.0-7) unstable; urgency=low
+
+  * gps.gpr: do not mention XML/Ada, we don't use it.  Fixes FTBFS.
+
+ -- Ludovic Brenta <ludovic@ludovic-brenta.org>  Sun, 12 Mar 2006 00:55:48 +0100
+
+gnat-gps (2.1.0-6) unstable; urgency=low
+
+  * debian/control: add support for GNU/kFreeBSD.  Build-depend on gnat
+    (>=3.15p-19) and libgtkada2-dev (>=2.4.0-6).
+  * debian/control: update Standards-Version to 3.6.2 with no changes.
+  * debian/rules: bypass upstream's recursive configures and makes as much
+    as possible.  We now build most everything directly from debian/rules,
+    the only exceptions being dbimp, cbrowser and libdb.
+    - gps.gpr: new; use to build all Ada files.
+    - debian/00-makefiles.patch: remove, no longer needed.
+  * Do not build the bundled copy of tcl8.1 in kernel/src_info/sn/snsrc,
+    which FTBFS on Etch as of February 2006:
+    - debian/08-no-tcl.patch: new.
+    - debian/rules: pass --with-tclconfig and --with-tclinclude to
+      sourcenav's configure.
+    - debian/control: build-depend on tcl8.4-dev.
+  * Fix FTBFS in the bundled copy of cschtml in newer Etch:
+    - debian/control: build-depend on libcairo2-dev.
+    - debian/09-cschtml.patch: new.
+
+ -- Ludovic Brenta <ludovic@ludovic-brenta.org>  Thu, 23 Feb 2006 22:24:02 +0100
+
+gnat-gps (2.1.0-5) unstable; urgency=medium
+
+  * Change maintainer's email address.
+  * debian/323515.patch: new.  Thanks, Matt Kraai.  Closes: #323515.
+
+ -- Ludovic Brenta <ludovic@ludovic-brenta.org>  Sun,  4 Sep 2005 00:01:38 +0200
+
+gnat-gps (2.1.0-4) unstable; urgency=medium
+
+  * debian/rules (clean): remove all files that are generated during build.
+  * debian/297980.patch: new; thanks to Jan Nordholz for the help.
+    Closes: #297980.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Wed, 27 Apr 2005 13:26:41 +0200
+
+gnat-gps (2.1.0-3) unstable; urgency=low
+
+  * Rebuild using libgtkada2_2.4.0-2; depend on libgtkada-2.4 instead of
+    libgtkada2-0 (see #293652).
+  * debian/gnat-gps-doc.copyright: updated to new upstream version.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Sun,  6 Feb 2005 00:12:37 +0100
+
+gnat-gps (2.1.0-2) unstable; urgency=low
+
+  * Acknowledge NMU from Matthias.
+  * Install python customisation files to /usr/share/gps/python, too.
+    (the example files are still in gnat-gps-doc under
+    /usr/share/doc/gnat-gps/examples).
+  * debian/07-python-customisation.patch: new patch, allows the sysadmin
+    to override /usr/share/gps/python/autoexec.py with
+    /etc/gnat-gps/autoexec.py.
+  * debian/README.Debian: information about python support.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Wed, 2 Feb 2005 12:13:02 +0100
+
+gnat-gps (2.1.0-1.1) unstable; urgency=low
+
+  * Enable python support.
+
+ -- Matthias Klose <doko@debian.org>  Tue,  1 Feb 2005 13:22:22 +0100
+
+gnat-gps (2.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Sun,  9 Jan 2005 18:40:50 +0100
+
+gnat-gps (1.4.0-5) unstable; urgency=low
+
+  * debian/gnat-gps-doc.copyright: Add a copyright file in gnat-gps-doc.
+    Closes: #264274.
+
+  * debian/rules (clean): Remove all GNAT configuration files generated
+    during the build.  They were mistakenly included in the *.diff.gz.
+
+  * debian/rules (binary-indep): chmod all the gif files; upstream has
+    them executable and this is wrong.  Insall the changelog and the
+    copyright file for gnat-gps-doc.
+
+  * debian/rules (install): chmod all the .ali files; new versions of
+    linda and lintian check for their permissions properly.
+
+  * debian/gnat.postinst: removed.
+
+  * debian/rules (binary-arch): call dh_installdeb to generate the
+    postinst and postrm scripts.
+
+  * debian/menu: use a quoted string for the section.
+
+  * debian/control: Update Standards-Version to 3.6.1.1.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Tue, 10 Aug 2004 07:43:46 +0200
+
+gnat-gps (1.4.0-4) unstable; urgency=low
+
+  * Fix FTBFS on sparc, powerpc.  Closes: #230082.
+
+  * Update Standards-Version from 3.6.0 to 3.6.1.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Wed, 28 Jan 2004 16:05:24 +0100
+
+gnat-gps (1.4.0-3) unstable; urgency=low
+
+  * kernel/src/glide_kernel-project.adb (Execute): fix bug in the
+    command line used to call gnatmake.  Closes: #226513.
+
+  * Use gnat-gdb instead of gdb by default.  Closes: #226517.
+
+  * Do not generate the Pretty_Printer section in the GNAT project file;
+    GNAT 3.15p doesn't understand it.
+
+  * Build and install the tools: gpr2make and gprcmd.  Requires things from
+    the CVS repository for GCC.
+
+  * Install Makefile.generic and Makefile.prolog in /usr/share/make.
+
+  * Install pictures in /usr/share/gps.
+
+  * Recommend gnat and gnat-gdb.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Mon, 26 Jan 2004 12:54:39 +0100
+
+gnat-gps (1.4.0-2.1) unstable; urgency=low
+
+  * Make gnat-gpc-doc binary-indep.
+
+ -- Matthias Klose <doko@deban.org>  Sat,  6 Dec 2003 11:43:07 +0100
+
+gnat-gps (1.4.0-2) unstable; urgency=low
+
+  * Reinstate the Source Navigator sources; upstream modified them from
+    the original.
+
+  * Put `dbimp' and `cbrowser' in /usr/lib/gps.
+
+  * Copy the share/*.xml files into /usr/share/gps/customize.  They are
+    now necessary at run time.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Thu,  4 Dec 2003 13:44:18 +0100
+
+gnat-gps (1.4.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+  * Do not call recursive makes silently; change $(MAKE) -s to just
+    $(MAKE) in all Makefiles.
+
+  * Use consistent compiler flags for all C files by exporting CFLAGS from
+    the top-level Makefile, and using that in all relevant Makefiles.
+
+  * Remove the source files for Red Hat Source Navigator.  Depend on
+    sourcenav (>= 5.0) instead.
+
+  * Build the Ada binding to Berkeley DB 1.85 against libdb3's
+    compatibility interface instead of the copy of Berkeley DB included in
+    Source Navigator.
+
+  * Link against libgtkada2 (>= 2.2.1) as required upstream.
+
+  * Streamline GNAT.Regpat.Extra to just the stuff required above and
+    beyond GNAT.Regpat in GNAT 3.15p.
+
+  * Add GNAT.Heap_Sort (g-heasor.ad[bs]) from the CVS repository for GCC.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Mon,  1 Dec 2003 13:28:57 +0100
+
+gnat-gps (1.2.2-1) unstable; urgency=low
+
+  * Initial Release.
+
+  * Link dynamically against libgnat-3.15p; do not use upstream's modified
+  libgnat.
+
+  * Link dynamically against libgtkada2-0 (>= 2.2.0); do not use
+  upstream's 2.0.1.
+
+ -- Ludovic Brenta <ludovic.brenta@insalien.org>  Sun, 31 Aug 2003 20:19:19 +0200

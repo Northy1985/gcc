@@ -1,0 +1,10 @@
+debian/python-jedi.yaml			/usr/share/vim/registry
+vim/after/ftplugin/python/jedi.vim	/usr/share/vim/addons/after/ftplugin/python/
+vim/after/syntax/python.vim		/usr/share/vim/addons/after/syntax/
+vim/autoload/jedi.vim			/usr/share/vim/addons/autoload/
+vim/autoload/health/jedi.vim		/usr/share/vim/addons/autoload/health/
+vim/doc/jedi-vim.txt			/usr/share/vim/addons/doc/
+vim/ftplugin/python/jedi.vim		/usr/share/vim/addons/ftplugin/python/
+vim/plugin/jedi.vim			/usr/share/vim/addons/plugin/
+vim/pythonx/jedi_vim.py			/usr/share/vim/addons/pythonx/
+vim/pythonx/jedi_vim_debug.py		/usr/share/vim/addons/pythonx/

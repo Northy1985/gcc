@@ -1,0 +1,96 @@
+#!/bin/sh
+set -Cefuv
+
+pkg=gnat-gps
+
+github_user=Adacore
+github_project=gps
+github_url=https://github.com/$github_user/$github_project
+
+# Upstream uses git branches for releases, so there is no reproducibley
+# way to deduce the commit from the version.
+# See $github_url/network
+deb_version_upstream=19.2
+commit=f7544ab4ea95ef1e4a9a64cb36fc1b2c399cd0e4
+
+orig=${pkg}_$deb_version_upstream.orig.tar.xz
+orig_dir=${pkg}-$deb_version_upstream
+
+zip=$commit.zip
+zipurl=$github_url/archive/$zip
+zipdir=$github_project-$commit
+
+# Sanity check.
+test ! -e ../$orig
+test ! -e $zipdir
+
+# If we were interrupted, do not download the archive again.
+test -r $zip || wget $zipurl
+
+# Check that the archive contains no suspicious path.
+status=0
+unzip -l $zip \*..\* || status=$?
+test $status = 11
+
+# Check that all files lie in the expected directory.
+a=`unzip -l $zip $zipdir/\* | tail -n1`
+b=`unzip -l $zip            | tail -n1`
+test "$a" = "$b"
+
+unzip $zip
+
+# The interesting part.
+
+# Since we have to repackage anyhow, remove all files that would
+# pollute the VCS diffs or make the packaging more complex, or could
+# be used unwantedly.
+# However, attempt to report any removed file during upgrades.
+find $zipdir \
+  \( \( -type f -a \( -name .cvsignore \
+                   -o -name .gitattributes \
+                   -o -name .gitreview \
+                   -o -name .gitignore \) \) \
+     -o \( -type d -a -empty \) \) \
+  -delete
+
+# *.sketch are installed then removed by Makefile.in (?).
+# *.js are packaged separately.
+for f in \
+    config.guess \
+    config.sub \
+    configure \
+    docs/users_guide/GPS/generated_hooks.py \
+    install-sh \
+    share/icons/hicolor/scalable/vcs.sketch \
+    share/templates/aws_web_server_blocks/js/prototype.js \
+    share/templates/aws_web_server_blocks/js/scriptaculous.js \
+
+do
+    # Avoid -f, report unnecessary removals.
+    rm $zipdir/$f
+done
+
+# Packaged separately: expect, clang, templates_parser.
+# osx_bundle is not needed in Debian.
+# share/fonts is intended for customization, but Debian does not allow
+#   local changes in /usr/share.
+for d in \
+    common/expect \
+    share/fonts \
+    libclang/gen \
+    osx_bundle \
+    templates_parser \
+
+do
+    # Report unnecessary removals.
+    test -d $zipdir/$d
+    rm -fr $zipdir/$d
+done
+
+# Fix silly permissions.
+find $zipdir/share -type f -executable -print0 | xargs -r0 chmod a-x
+
+# All went OK, create the archive and clean.
+tar -caf ../$orig --transform=s/^$zipdir/$orig_dir/ $zipdir
+rm -fr $zipdir
+rm $zip

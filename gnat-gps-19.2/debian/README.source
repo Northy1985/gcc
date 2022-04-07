@@ -1,0 +1,7 @@
+Upstream history is visible at https://github.com/AdaCore/PKG/network.
+The version number is always visible in first line of ./configure.in.
+
+When packaging a new version for Debian, edit the version and commit
+hash in debian/repackage then run it as a shell script.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>, Tue, 19 Nov 2019 19:55:17 +0100

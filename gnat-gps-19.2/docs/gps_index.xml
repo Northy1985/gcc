@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<index>
+   <doc_path>share/doc/gnat/html</doc_path>
+   <doc_path>share/doc/gnat/html/gnat_ugn</doc_path>
+   <doc_path>share/doc/gnat/html/gnat_rm</doc_path>
+   <doc_path>share/doc/gprbuild/html</doc_path>
+   <doc_path>share/doc/gnat-cross/html</doc_path>
+   <doc_path>share/doc/gnat-cross/html/gnat_ugx</doc_path>
+   <doc_path>share/doc/gnat-cross/html/gnathie_ug</doc_path>
+   <doc_path>share/doc/gnat-gps</doc_path>
+   <doc_path>share/doc/</doc_path>
+
+   <!--  Backward compatibility with earlier versions of GNAT -->
+   <doc_path>doc/gnat/html</doc_path>
+   <doc_path>doc/gnat-cross/html</doc_path>
+
+   <documentation_file>
+      <name>gps-welcome.html</name>
+      <descr>Welcome</descr>
+      <category>GPS</category>
+      <menu>/Help/GPS/Welcome</menu>
+   </documentation_file>
+
+   <documentation_file>
+      <name>html/tutorial/index.html</name>
+      <descr>GNAT Programming Studio Tutorial (requires gnat-gps-doc Debian package)</descr>
+      <category>GPS</category>
+      <menu>/Help/GPS/Tutorial</menu>
+   </documentation_file>
+
+   <documentation_file>
+      <name>html/users_guide/index.html</name>
+      <descr>GPS User's Guide (requires gnat-gps-doc Debian package)</descr>
+      <category>GPS</category>
+      <menu>/Help/GPS/GPS User's Guide</menu>
+   </documentation_file>
+
+   <documentation_file>
+      <name>html/users_guide/GPS.html</name>
+      <descr>GPS extensions for Python (requires gnat-gps-doc Debian package)</descr>
+      <menu>/Help/GPS/Python extensions</menu>
+      <category>Scripts</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>html/release_notes/index.html</name>
+      <descr>GPS Release Notes (requires gnat-gps-doc Debian package)</descr>
+      <category>GPS</category>
+      <menu>/Help/GPS/Release Notes</menu>
+   </documentation_file>
+
+   <documentation_file>
+      <name>share/doc/libxmlada-doc/html/index.html</name>
+      <descr>XML/Ada User's Guide (requires libxmlada-doc Debian package)</descr>
+      <category>XML</category>
+      <menu>/Help/XMLAda/User's Guide</menu>
+   </documentation_file>
+
+   <documentation_file>
+      <name>arm05.html</name>
+      <descr>Ada 2005 Reference Manual (requires ada-reference-manual-2005 Debian package)</descr>
+      <menu>/Help/GNAT/Ada 2005 Reference Manual</menu>
+      <category>GNAT</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>share/doc/ada-reference-manual-2005/aarm2005.html/aa-TOC.html</name>
+      <descr>Annotated Ada 2005 Reference Manual (requires ada-reference-manual-205 Debian package)</descr>
+      <menu>/Help/GNAT/Annotated Ada 2005 Reference Manual</menu>
+      <category>GNAT</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>arm12.html</name>
+      <descr>Ada 2012 Reference Manual (requires ada-reference-manual-2012 Debian package)</descr>
+      <menu>/Help/GNAT/Ada 2012 Reference Manual</menu>
+      <category>GNAT</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>share/doc/ada-reference-manual-2012/aarm2012.html/aa-TOC.html</name>
+      <descr>Annotated Ada 2012 Reference Manual (requires ada-reference-manual-2012 Debian package)</descr>
+      <menu>/Help/GNAT/Annotated Ada 2012 Reference Manual</menu>
+      <category>GNAT</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>binutils.html</name>
+      <descr>Using Binary Utilities (nm, objdump, strip..)</descr>
+      <menu>/Help/GNU Tools/Using Binary Utilities</menu>
+      <category>General</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>ld.html</name>
+      <descr>Using the Linker</descr>
+      <menu>/Help/GNU Tools/Using the Linker</menu>
+      <category>General</category>
+   </documentation_file>
+
+   <documentation_file>
+      <name>as.html</name>
+      <descr>Using the Assembler</descr>
+      <menu>/Help/GNU Tools/Using the Assembler</menu>
+      <category>General</category>
+   </documentation_file>
+
+</index>

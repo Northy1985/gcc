@@ -1,0 +1,36 @@
+.\" Adapted from the executable source.
+
+.TH GPS_CLI 1 "21 MAY 2016" "GNU Ada Tools" "GNAT Programming Studio"
+.SH NAME
+gps_cli \- command line for the GNAT Programming Studio
+.SH SYNOPSIS
+\fBgps_cli\fR \fB\-P\fIproject\fR[\fI.gpr\fR]
+.SH DESCRIPTION
+This command line tool allows one to script the GNAT Programming Studio
+without a graphical environment.
+.TP
+\fB\-P \fIproject\fR[\fI.gpr\fR], \fB\-P\fIproject\fR[\fI.gpr\fR], \fB\-\-project=\fIproject\fR[\fI.gpr\fR]
+path to the main GNAT project
+.TP
+\fB\-X\fIvariable=value\fR
+set an external project variable
+.TP
+\fB\-l\fILANG:SCRIPT\fR, \fB\-\-load=\fILANG:SCRIPT\fR
+execute external \fISCRIPT\fR in the language \fILANG\fR
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+show the version then exit
+\fB\-h\fR, \fB\-\-help\fR
+display usage then exit
+.SH "SEE ALSO"
+\fBgnat-gps\fR (1),
+and various user guides in the \fI/usr/share/doc/gnat-gps\fR directory
+if the \fIgnat-gps-doc\fR Debian package is installed on your system.
+.SH AUTHOR
+The GNAT Programming Studio has been written and is maintained by Ada
+Core Technologies. If you are interested in getting commercial support
+for this software, please contact sales@gnat.com.
+
+This manual page has been written by
+Nicolas Boulenguez <nicolas@debian.org>
+for Debian GNU/Linux.

@@ -1,0 +1,11 @@
+with "../kernel/kernel_core";
+with "../shared";
+
+project Prj_Core is
+
+   for Source_Dirs use ("core/src");
+   for Object_Dir use Shared'Object_Dir;
+
+   package Compiler renames Shared.Compiler;
+
+end Prj_Core;

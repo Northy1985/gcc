@@ -1,0 +1,20 @@
+Document: DOCUMENTYEAR
+Title: TITLE YEAR
+Author: Ada Working Group ISO/IEC JTC 1/SC 22/WG 9
+Abstract: ABSTRACT
+Section: Programming/Ada
+
+Format: HTML
+Index: /usr/share/doc/ada-reference-manual-YEAR/DOCUMENTYEAR.html/FILEPREFIX-TOC.html
+Files: /usr/share/doc/ada-reference-manual-YEAR/DOCUMENTYEAR.html/*
+
+Format: PDF
+Files: /usr/share/doc/ada-reference-manual-YEAR/DOCUMENTYEAR.pdf.gz
+
+Format: Text
+Index: /usr/share/doc/ada-reference-manual-YEAR/DOCUMENTYEAR.txt/FILEPREFIX-TOC.TXT
+Files: /usr/share/doc/ada-reference-manual-YEAR/DOCUMENTYEAR.txt/*
+
+Format: info
+Index: /usr/share/info/DOCUMENTYEAR.info.gz
+Files: /usr/share/info/DOCUMENTYEAR.info.gz

@@ -1,0 +1,15 @@
+# Referenced from gps/src/gps-main.adb
+docs/gps-splash.png                     usr/share/gps
+
+share/*                                 usr/share/gps
+
+# Referenced from
+# gnatdoc/docs/users_guide/gnatdoc.rst
+# gnatdoc/src/gnatdoc-backend-base.adb
+gnatdoc/resources/*                     usr/share/gps/gnatdoc
+
+# The fake python class providing doc strings is only useful inside gps.
+docs/users_guide/GPS                    usr/share/gps/support/ui/GPS_doc
+
+# Referenced in kernel/src/welcome_page.adb.
+docs/gps-welcome.html                   usr/share/doc/gnat-gps/html

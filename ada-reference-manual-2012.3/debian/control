@@ -1,0 +1,47 @@
+Source: ada-reference-manual
+Section: doc
+Priority: optional
+Maintainer: Ludovic Brenta <lbrenta@debian.org>
+Uploaders: Nicolas Boulenguez <nicolas@debian.org>
+Build-Depends:
+ debhelper-compat (= 12),
+ gnat,
+ gprbuild,
+ texinfo,
+# texi2any
+ texlive-fonts-recommended,
+# ecrm1095 fonts
+ texlive-latex-recommended,
+# pdf output module
+Standards-Version: 4.4.1
+Vcs-Browser: https://salsa.debian.org/debian/ada-reference-manual
+Vcs-Git: https://salsa.debian.org/debian/ada-reference-manual.git
+Homepage: http://www.stephe-leake.org/ada/arm.html
+# http://www.ada-auth.org/arm.html is the other upstream contact
+# but Stephen's page links to them on the front page and this field
+# only accepts one value.
+Rules-Requires-Root: no
+
+Package: ada-reference-manual-2005
+Architecture: all
+Multi-Arch: foreign
+Suggests: gnat
+Depends: ${misc:Depends}
+Description: Ada 2005 language standard
+ The Ada Reference Manual is the ISO standard describing the
+ programming language Ada.
+ .
+ This package provides the plain and annotated versions of the 2005
+ ARM in HTML, PDF, info, and plain text formats.
+
+Package: ada-reference-manual-2012
+Architecture: all
+Multi-Arch: foreign
+Suggests: gnat
+Depends: ${misc:Depends}
+Description: Ada 2012 language standard
+ The Ada Reference Manual is the ISO standard describing the
+ programming language Ada.
+ .
+ This package provides the plain and annotated versions of the 2012
+ ARM in HTML, PDF, info, and plain text formats.

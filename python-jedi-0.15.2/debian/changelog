@@ -1,0 +1,133 @@
+python-jedi (0.15.2-1) unstable; urgency=medium
+
+  [ Sandro Tosi ]
+  * Drop python2 support; Closes: #937849
+
+  [ Piotr Ożarowski ]
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Tue, 31 Dec 2019 14:02:43 +0100
+
+python-jedi (0.14.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Tue, 23 Jul 2019 00:24:39 +0200
+
+python-jedi (0.13.2-1) unstable; urgency=medium
+
+  * New upstream release
+    - requires Parso >= 0.3.0
+  * setup.py.patch removed, applied upstream
+  * Standards-Version bumped to 4.3.0 (no changes needed)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Mon, 31 Dec 2018 11:33:46 +0100
+
+python-jedi (0.12.0-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Cleaned out some code from setup.py; Closes: #912181
+    The code which I removed may be some non-documented workaround for an
+    older defect of the module ast. Now setup.py's code is shorter.
+
+ -- Georges Khaznadar <georgesk@debian.org>  Sat, 10 Nov 2018 17:51:42 +0100
+
+python-jedi (0.12.0-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Wed, 13 Jun 2018 23:51:17 +0200
+
+python-jedi (0.11.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Wed, 20 Dec 2017 11:24:34 +0100
+
+python-jedi (0.11.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - add python-parso to Depends
+  * Drop DPMT (temporarily, due to infrastructure problems) from Uploaders /
+    VCS-* fields (closes: 873882)
+  * Standards-Version bumped to 4.1.1 (copyright format URL updated)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Wed, 25 Oct 2017 12:48:44 +0200
+
+python-jedi (0.10.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Tue, 04 Jul 2017 22:21:50 +0200
+
+python-jedi (0.10.0~git1+f05c071-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URL (https)
+
+  [ Piotr Ożarowski ]
+  * New upstream snapshot
+  * Drop DPMT from Uploaders (due to problems with multiple tarballs in git-dpm)
+  * debian/compat changed to 10
+  * vim-python-jedi: switch to Python 3 (closes: 841043)
+  * disable tests for now (closes: 830399)
+  * Standards-Version bumped to 3.9.8 (no changes needed)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Thu, 19 Jan 2017 19:05:15 +0100
+
+python-jedi (0.9.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/watch: use pypi.debian.net redirector
+
+ -- Piotr Ożarowski <piotr@debian.org>  Sun, 07 Jun 2015 22:09:17 +0200
+
+python-jedi (0.8.1-1) unstable; urgency=medium
+
+  * New upstream release (closes: 764746)
+  * Update debian/watch file to remove "final" from upstream version
+  * Standards-Version bumped to 3.9.6 (no changes needed)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Fri, 10 Oct 2014 21:23:08 +0200
+
+python-jedi (0.8.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add vim-python to vim-python-jedi's Depends (closes: 727835)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Mon, 05 May 2014 22:22:02 +0200
+
+python-jedi (0.7.0-1) unstable; urgency=low
+
+  * New upstream release
+    - switched from LGPL to MIT license
+  * debian/copyright updated
+    - license of debian/* files changed to Expat, to match upstream
+  * CHANGELOG.rst installed as upstream changelog
+
+ -- Piotr Ożarowski <piotr@debian.org>  Tue, 20 Aug 2013 22:10:00 +0200
+
+python-jedi (0.6.0-2) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Add Vcs-* fields.
+
+  [ Piotr Ożarowski ]
+  * Bump minimum required Python version to 2.6 (due to b'' syntax)
+  * Add DPMT to Uploaders
+  * Upload to unstable
+  * Add dh-python to Build-Depends
+
+ -- Piotr Ożarowski <piotr@debian.org>  Thu, 08 Aug 2013 16:43:43 +0200
+
+python-jedi (0.6.0-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Piotr Ożarowski <piotr@debian.org>  Tue, 14 May 2013 23:29:48 +0200
+
+python-jedi (0.5~b5-1) experimental; urgency=low
+
+  * Initial release (closes: #696195)
+
+ -- Piotr Ożarowski <piotr@debian.org>  Sat, 19 Jan 2013 23:02:16 +0100

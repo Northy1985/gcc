@@ -1,0 +1,57 @@
+Source: gnat
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Ludovic Brenta <lbrenta@debian.org>
+Uploaders: Nicolas Boulenguez <nicolas@debian.org>
+Section: devel
+Priority: optional
+Build-Depends: debhelper-compat (= 12)
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Vcs-Browser: https://salsa.debian.org/debian/gnat
+Vcs-Git: https://salsa.debian.org/debian/gnat.git
+
+Package: gnat
+Architecture: amd64 arm64 armhf i386 powerpc ppc64el riscv64 s390x
+Depends: ${misc:Depends},
+ gcc,
+ gnat-9
+Suggests: ada-reference-manual-2012, gnat-gps
+Description: GNU Ada compiler
+ GNAT is a full-featured Ada 2012 compiler.  A quote from
+ http://www.adaic.org says: "Easily reused and maintained, readable
+ and user friendly, Ada code facilitates such massive software
+ projects as the Space Station and the Paris Metro. It has proven to
+ be extraordinarily robust in decades' worth of daily field tests
+ under the most rigorous conditions in which millions of lives have
+ been at stake."  Ada is the language for real-world, mission-critical
+ programming.
+ .
+ At the same time, Ada's radical type safety helps novice programmers
+ avoid many common mistakes and deliver their software on time (see
+ http://www.adaic.org/atwork/trains.html).
+ .
+ This empty package depends on the default version of the Ada compiler
+ for Debian, which is part of the GNU Compiler Collection. Its
+ enforces the same version for all Ada compilations, as described in
+ the Debian Ada Policy.
+
+Package: gnat-doc
+Architecture: all
+Depends: gnat-8-doc, ${misc:Depends}
+Description: Documentation for the GNU Ada compiler
+ GNAT is a full-featured Ada 2012 compiler.  A quote from
+ http://www.adaic.org says: "Easily reused and maintained, readable
+ and user friendly, Ada code facilitates such massive software
+ projects as the Space Station and the Paris Metro. It has proven to
+ be extraordinarily robust in decades' worth of daily field tests
+ under the most rigorous conditions in which millions of lives have
+ been at stake."  Ada is the language for real-world, mission-critical
+ programming.
+ .
+ At the same time, Ada's radical type safety helps novice programmers
+ avoid many common mistakes and deliver their software on time (see
+ http://www.adaic.org/atwork/trains.html).
+ .
+ This is an empty package that depends on the documentation package
+ for the default Ada compiler for Debian, which is part of the GNU
+ Compiler Collection.

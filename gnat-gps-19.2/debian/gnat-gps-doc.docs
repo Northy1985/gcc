@@ -1,0 +1,7 @@
+docs/users_guide/_build/latex/GPS.pdf
+docs/tutorial/_build/latex/Tutorial.pdf
+docs/programmers_guide/_build/latex/GPSProgramersGuide.pdf
+docs/release_notes/build/latex/ReleaseNotes.pdf
+gnatdoc/docs/users_guide/_build/latex/gnatdoc.pdf
+docs/release_notes_17/build/latex/ReleaseNotes_17.pdf
+docs/release_notes_62/build/latex/ReleaseNotes_62.pdf

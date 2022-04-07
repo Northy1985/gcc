@@ -1,0 +1,21 @@
+--  The part of the kernel that depends on the GUI
+with "gtkada";
+with "kernel_core";
+with "../shared";
+with "../widgets/widgets";
+with "../language/language_ui";
+with "../gnatcoll_extras/gnatcoll_extras";
+with "../refactoring/core/refactoring_core";
+with "../toolchains_editor/core/toolchains_core";
+with "xmlada";
+with "../libclang/libclang";
+
+project Kernel is
+
+   for Source_Dirs use ("src", "generated");
+
+   for Object_Dir use Shared'Object_Dir;
+
+   package Compiler renames Shared.Compiler;
+
+end Kernel;

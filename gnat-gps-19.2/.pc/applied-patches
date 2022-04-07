@@ -1,0 +1,13 @@
+doc_version_from_configure.in.diff
+documentation-path.patch
+elaboration.patch
+fix_warnings.diff
+do-not-set-pythonhome.diff
+python_2_to_3.diff
+clang-flexible-binding-generation.diff
+clang-3.6.diff
+libadalang_disable.diff
+clang-3.8.diff
+gtk3-incompatibility.diff
+gnatdoc.diff
+clang-translation-unit.diff

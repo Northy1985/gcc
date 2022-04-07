@@ -1,0 +1,13 @@
+Document: gps-programmer-guide
+Title: GPS Programmer's Guide
+Author: AdaCore
+Abstract: This document explains how to add your own modules
+ to the GPS programming system.
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/gnat-gps/GPSProgramersGuide.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/gnat-gps/html/programmers_guide/index.html
+Files: /usr/share/doc/gnat-gps/html/programmers_guide/*

@@ -1,0 +1,14 @@
+Document: gnat-programming-studio-tutorial
+Title: GNAT Programming Studio Tutorial
+Author: AdaCore
+Abstract: This document provides a guide through the major capabilities of
+ the GNAT Programming Studio by working on a code example: sdc, a simple
+ desktop calculator.
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/gnat-gps/Tutorial.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/gnat-gps/html/tutorial/index.html
+Files: /usr/share/doc/gnat-gps/html/tutorial/*

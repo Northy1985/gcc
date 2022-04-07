@@ -1,0 +1,13 @@
+Document: using-gnat-programming-studio
+Title: Using the GNAT Programming Studio
+Author: AdaCore
+Abstract: GPS is a complete integrated development environment
+ that gives access to a wide range of tools and integrates them smoothly.
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/gnat-gps/GPS.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/gnat-gps/html/users_guide/index.html
+Files: /usr/share/doc/gnat-gps/html/users_guide/*

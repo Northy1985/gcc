@@ -1,0 +1,4 @@
+# gps-welcome.html is intended for the executable, not as a standalone
+# documentation, but it is convenient to store it under /usr/share/doc
+# so that the relative links work.
+possible-documentation-but-no-doc-base-registration

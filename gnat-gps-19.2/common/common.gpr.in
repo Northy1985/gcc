@@ -1,0 +1,37 @@
+with "gnatcoll_sqlite.gpr";
+with "gnatcoll_xref.gpr";
+with "../shared";
+with "xmlada_sax";
+
+project Common is
+
+   for Languages use ("Ada", "C");
+   for Source_Dirs use ("core/src");
+   for Object_Dir use Shared'Object_Dir;
+
+   package Compiler is
+      for Switches ("Ada") use Shared.Compiler'Switches ("Ada");
+      for Switches ("C") use Shared.Compiler'Switches ("C");
+      for Switches ("test_htables.adb") use ("-g", "-O2", "-gnatwue");
+      for Switches ("s-memory.adb") use ("-g", "-O2", "-gnatpg");
+
+      No_Checks := ("-g", "-O2", "-gnat2012", "-gnatpn");
+
+      case Shared.Build is
+          when "Production" =>
+             for Switches ("htables.adb") use No_Checks;
+             for Switches ("dynamic_arrays.adb") use No_Checks;
+          when "Debug" =>
+      end case;
+   end Compiler;
+
+   package Binder is
+       for Switches ("Ada") use ("-E");
+   end Binder;
+
+   package Linker extends Shared.Linker is
+      for Linker_Options use Shared.Linker'Linker_Options &
+        @TARGET_LFLAGS@;
+   end Linker;
+
+end Common;

@@ -1,0 +1,183 @@
+#!/usr/bin/make -f
+
+##############
+# Legal stuff
+##############
+
+# Copyright (c) 2003-2006, 2011-2014 Ludovic Brenta <lbrenta@debian.org>
+# Copyright (c) 2010-2019 Nicolas Boulenguez <nicolas@debian.org>
+
+# This build script is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 3 of the
+# License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# On Debian systems, the full text of the GPL is in the file
+# /usr/share/common-licenses/GPL-3.
+
+.SUFFIXES:
+
+########################
+# Guess some variables.
+########################
+
+DEB_BUILD_MAINT_OPTIONS := hardening=+all
+ifneq (,$(filter $(DEB_HOST_ARCH), ppc64el))
+  export DEB_CFLAGS_MAINT_APPEND = -O2
+  export DEB_CFLAGS_MAINT_STRIP = -O3
+  export DEB_ADAFLAGS_MAINT_APPEND = -O2
+  export DEB_ADAFLAGS_MAINT_STRIP = -O3
+endif
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/buildflags.mk
+include /usr/share/dpkg/pkg-info.mk
+
+PKG_CONFIG_LIBRARIES := gtk+-3.0 glib-2.0 pygobject-3.0 python-2.7
+
+ifneq (,$(wildcard /usr/bin/gnatgcc))
+  # Avoid this part during -indep builds.
+
+  gnat_version := $(shell gnatgcc -dumpversion)
+  include /usr/share/ada/debian_packaging-$(gnat_version).mk
+
+  CLANG_VERSION := $(shell dpkg -s libclang-dev \
+    | sed -nr '/^Depends: libclang-(.*)-dev.*/{s//\1/p;q}')
+endif
+
+LIBS := -L/usr/lib/llvm-$(CLANG_VERSION)/lib -lclang
+
+######################################################################
+%:
+	dh $@
+
+# Do not try to call an upstream configure or Makefile.
+.PHONY: $(addprefix override_dh_auto_, \
+  clean configure build-arch build-indep test install)
+
+######################################################################
+
+# Note: the script generates both Ada and Python sources, the latter
+# are embedded into the users_guide.
+override_dh_auto_build-arch: docs/users_guide/GPS/generated_hooks.py
+docs/users_guide/_build: docs/users_guide/GPS/generated_hooks.py
+docs/users_guide/GPS/generated_hooks.py: kernel/src/hooks.py
+	rm -fr kernel/generated
+	mkdir kernel/generated
+	cd kernel/src && python3 hooks.py
+override_dh_auto_clean::
+	rm -fr kernel/generated
+	rm -f docs/users_guide/GPS/generated_hooks.py
+
+override_dh_auto_build-arch: libclang/gen
+libclang/gen:
+	$(MAKE) -C libclang \
+	  CLANG_SRC_DIR=/usr/lib/llvm-$(CLANG_VERSION) \
+	  GCC_DUMPMACHINE=$(DEB_HOST_MULTIARCH)
+override_dh_auto_clean::
+	$(MAKE) -C libclang clean
+
+######################################################################
+override_dh_auto_build-arch: | obj
+	gprbuild $(BUILDER_OPTIONS) debian/build_gps.gpr \
+	  $(foreach v,ADAFLAGS CFLAGS CPPFLAGS DEB_HOST_GNU_TYPE LDFLAGS LIBS,"-X$(v)=$($(v))") \
+	  "-XPKG_CONFIG_CFLAGS=`pkg-config --cflags $(PKG_CONFIG_LIBRARIES)`" \
+	  "-XPKG_CONFIG_LIBS=`pkg-config --libs $(PKG_CONFIG_LIBRARIES)`"
+obj:
+	mkdir $@
+override_dh_auto_clean::
+	rm -fr obj
+
+database := kernel/generated/gps-kernel-properties-database.ads
+override_dh_auto_build-arch: $(database)
+$(database):
+	cd $(dir $@) && gnatcoll_sqlite2ada -api=GPS.Kernel.Properties.Database -adacreate -dbmodel=../src/properties_schema.txt
+override_dh_auto_clean::
+	rm -f $(database)
+
+######################################################################
+configured := \
+  common/core/src/config.ads \
+  docs/gps-welcome.html \
+  docs/gps-welcome-public.html \
+  share/support/core/protocols.py
+override_dh_auto_configure: $(configured)
+$(configured): %: %.in
+	sed \
+	    -e 's/@CURRENT_YEAR@/20$(DEB_VERSION_UPSTREAM)/' \
+	    -e 's/@GPS_VERSION@/$(DEB_VERSION_UPSTREAM)/' \
+	    -e 's/@TARGET@/$(DEB_HOST_GNU_TYPE))/' \
+	    -e 's/@TARGET_IS_DARWIN@/False/' \
+	    -e 's!@prefix@!/usr!' \
+	    -e 's/@HOST_TYPE@/Unix/' \
+	    -e 's/@STRIP_CR@/False/' \
+	    -e 's/@CAN_OUTPUT@/True/' \
+	    -e 's!@EXEC_COMMAND@!/bin/sh -c!' \
+	    -e 's/@DEFAULT_PS@/ps/' \
+	    -e 's/@PRINT_CMD@/lpr/' \
+	    -e 's/@OPAQUE_MDI@/True/' \
+	    -e 's/@DIFF_CMD@/diff -u/' \
+	    -e 's/@DIFF3_CMD@/diff3/' \
+	    -e 's/@PATCH_CMD@/patch/' \
+	    -e 's/@EXECUTION_WINDOW@/True/' \
+	    -e 's/@CHARSET@/UTF-8/' \
+	    -e 's/@SSH_ESCAPE@/~/' \
+	    $< > $@
+override_dh_auto_clean::
+	rm -f $(configured)
+
+override_dh_auto_configure: VERSION.txt
+VERSION.txt:
+	echo '$(DEB_VERSION_UPSTREAM)' > $@
+override_dh_auto_clean::
+	rm -f VERSION.txt
+
+######################################################################
+DOCS := \
+ docs/users_guide/_build \
+ docs/tutorial/_build \
+ docs/programmers_guide/_build \
+ docs/release_notes/build \
+ docs/release_notes_17/build \
+ docs/release_notes_62/build \
+ gnatdoc/docs/users_guide/_build
+
+# On 32 bits archs, forbid parallelism to use less memory, see #913371.
+# BUILDER_OPTIONS below contains -j$(BUILDER_JOBS).
+ifeq ($(DEB_BUILD_ARCH_BITS),32)
+  override_dh_auto_build-arch: BUILDER_JOBS := 1
+endif
+
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+override_dh_auto_build-indep: $(DOCS)
+  # Give distinct names to release notes.
+	cd docs/release_notes_17/build/latex && cp -f ReleaseNotes.pdf ReleaseNotes_17.pdf
+	cd docs/release_notes_62/build/latex && cp -f ReleaseNotes.pdf ReleaseNotes_62.pdf
+  # Sphinx creates Python precompiled files in every imported module,
+  # we do not want them installed.
+	find . -name "*.pyc" -delete
+	find . -type d -name "__pycache__" -print0 | xargs -r0 rmdir
+endif
+
+# Note: see docs/users_guide/GPS/generated_hooks.py above.
+$(DOCS):
+	$(MAKE) -C $(dir $@) html latexpdf
+
+override_dh_auto_clean::
+	rm -fr $(DOCS)
+	find . -name "*.pyc" -delete
+	find . -type d -name "__pycache__" -print0 | xargs -r0 rmdir
+
+######################################################################
+.PHONY: override_dh_install-indep
+override_dh_install-indep:
+	dh_install -i
+  # Documentation and license are not useful here.
+	rm -f debian/gnat-gps-common/usr/share/gps/color_themes/themes/*/README.*
+	rm -f debian/gnat-gps-common/usr/share/gps/color_themes/themes/*/LICENSE*
+  # libadalang is disabled because it is not packaged in Debian
+	rm -f debian/gnat-gps-common/usr/share/gps/support/core/lal.py

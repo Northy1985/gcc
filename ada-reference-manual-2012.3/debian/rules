@@ -1,0 +1,128 @@
+#!/usr/bin/make -f
+#
+# Makefile for Ada Reference Manual.
+# Copyright (c) 2010-2012 Stephen Leake <stephen_leake@stephe-leake.org>
+# Copyright (c) 2013-2019 Nicolas Boulenguez <nicolas@debian.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+define NEW_LINE :=
+
+
+endef
+
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+  DOCUMENTS := aarm arm
+  YEARS     := 2005 2012
+  FORMATS   := html info txt pdf
+endif
+
+gnat_version := $(shell gnatgcc -dumpversion)
+DEB_BUILD_MAINT_OPTIONS := hardening=+all
+DEB_ADAFLAGS_MAINT_APPEND := -gnatoVa -fstack-check
+include /usr/share/dpkg/buildflags.mk
+include /usr/share/ada/debian_packaging-$(gnat_version).mk
+
+%:
+	dh $@ --sourcedirectory=build
+
+# Ignore the upstream build/ directory.
+.PHONY: build
+build:
+	dh $@ --sourcedirectory=build
+
+######################################################################
+# Default settings do not produce PDF format.
+.PHONY: override_dh_auto_build
+override_dh_auto_build:
+	dh_auto_build -- \
+	  $(foreach v,ADAFLAGS BUILDER_OPTIONS DOCUMENTS FORMATS LDFLAGS YEARS,'$(v)=$($(v))')
+
+######################################################################
+.PHONY: override_dh_compress
+override_dh_compress:
+	dh_compress --all --exclude=.TXT
+
+######################################################################
+.PHONY: override_dh_installinfo
+override_dh_installinfo:
+	$(foreach y,$(YEARS),dh_installinfo --package=ada-reference-manual-$(y)\
+          $(foreach d,$(DOCUMENTS),build/$(d)$(y).info)$(NEW_LINE))
+	dh_installinfo --remaining-packages
+
+######################################################################
+# Debhelper files for doc-base.
+
+TITLE_aarm      := Annotated Ada Reference Manual
+TITLE_arm       := Ada Reference Manual
+FILEPREFIX_aarm := aa
+FILEPREFIX_arm  := rm
+ISO_2005        := 2007
+ISO_2012        := 201x
+ABSTRACT_aarm = The Annotated Ada Reference Manual, ISO/IEC \
+ 8652:$(ISO_$(y))(E). It contains the entire text of the Ada $(y) \
+ standard, plus various annotations. It is intended primarily for \
+ compiler writers, validation test writers, and other language \
+ lawyers. The annotations include detailed rationale for individual \
+ rules and explanations of some of the more arcane interactions among \
+ the rules.
+ABSTRACT_arm = The Ada Reference Manual, ISO/IEC \
+ 8652:$(ISO_$(y))(E). It contains the entire text of the Ada $(y) \
+ standard.
+
+define foreach_document_year_template
+
+  DOC_BASE_GENERATED += debian/ada-reference-manual-$(y).doc-base.$(d)$(y)
+  debian/ada-reference-manual-$(y).doc-base.$(d)$(y): debian/doc_base_template
+	sed $$< \
+           -e 's@DOCUMENT@$(d)@g' \
+           -e 's@YEAR@$(y)@g' \
+           -e 's@TITLE@$(TITLE_$(d))@g' \
+           -e 's@ABSTRACT@$(ABSTRACT_$(d))@g' \
+           -e 's@FILEPREFIX@$(FILEPREFIX_$(d))@g' \
+           > $$@
+
+endef
+$(foreach d,$(DOCUMENTS),$(foreach y,$(YEARS),\
+$(eval $(foreach_document_year_template))))
+
+.PHONY: override_dh_installdocs
+override_dh_installdocs: $(DOC_BASE_GENERATED)
+	$(foreach y,$(YEARS),dh_installdocs --package=ada-reference-manual-$(y)\
+          README.txt \
+          $(foreach d,$(DOCUMENTS),build/$(d)$(y).html\
+                                   build/$(d)$(y).txt\
+                                   build/$(d)$(y).pdf)$(NEW_LINE))
+	dh_installdocs --remaining-packages
+
+.PHONY: override_dh_clean
+override_dh_clean:
+	dh_clean $(DOC_BASE_GENERATED)
+
+######################################################################
+# Check that some .txt docs are still duplicates, then symlink.
+
+ifeq (aarm-arm,$(findstring aarm,$(DOCUMENTS))-$(findstring arm,$(DOCUMENTS)))
+.PHONY: override_dh_link
+override_dh_link:
+	$(foreach y,$(YEARS), \
+	$(foreach c,Lib TOC, \
+	diff -q \
+	  debian/ada-reference-manual-$(y)/usr/share/doc/ada-reference-manual-$(y)/aarm$(y).txt/aa-$(c).TXT \
+	  debian/ada-reference-manual-$(y)/usr/share/doc/ada-reference-manual-$(y)/arm$(y).txt/rm-$(c).TXT$(NEW_LINE) \
+	dh_link --package=ada-reference-manual-$(y) \
+	  usr/share/doc/ada-reference-manual-$(y)/aarm$(y).txt/aa-$(c).TXT \
+	  usr/share/doc/ada-reference-manual-$(y)/arm$(y).txt/rm-$(c).TXT$(NEW_LINE)))
+	dh_link --remaining-packages
+endif

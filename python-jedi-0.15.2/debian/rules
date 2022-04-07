@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+export PYBUILD_DISABLE=test
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGELOG.rst
+
+override_dh_auto_clean:
+	rm -rf .cache
+	dh_auto_clean
+
+override_dh_auto_test:
+	dh_auto_test -- --system=custom --test-args='PYTHONPATH={build_dir} {interpreter} {dir}/test/run.py'
+
+DEB_UPSTREAM_VERSION:=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
+DEB_UPSTREAM_REV:=$(shell dpkg-parsechangelog | sed -rne 's,^Version: .*git[0-9]+\+([^-]+).*,\1,p')
+get-orig-source:
+	if [ -n "$(DEB_UPSTREAM_REV)" ]; then\
+		git clone https://github.com/davidhalter/jedi.git _upstream_repo && \
+		cd _upstream_repo && git archive --format=tar.gz --prefix='jedi-$(DEB_UPSTREAM_VERSION)/' $(DEB_UPSTREAM_REV) \
+		  -o ../python-jedi_$(DEB_UPSTREAM_VERSION).orig.tar.gz && \
+		cd .. && rm -rf _upstream_repo/; \
+	else\
+		uscan --force-download --rename --destdir=. --download-version $(DEB_UPSTREAM_VERSION);\
+	fi
+	git clone https://github.com/davidhalter/jedi-vim.git && \
+	cd jedi-vim && git archive --format=tar.gz --prefix='jedi-vim-$(DEB_UPSTREAM_VERSION)/' HEAD \
+	  -o ../python-jedi_$(DEB_UPSTREAM_VERSION).orig-vim.tar.gz && \
+	cd .. && rm -rf jedi-vim/

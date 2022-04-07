@@ -1,0 +1,12 @@
+addon: python-jedi
+description: "autocompletion tool for Python"
+files: 
+  - after/ftplugin/python/jedi.vim
+  - after/syntax/python.vim
+  - autoload/jedi.vim
+  - autoload/health/jedi.vim
+  - doc/jedi-vim.txt
+  - ftplugin/python/jedi.vim
+  - plugin/jedi.vim
+  - pythonx/jedi_vim.py
+  - pythonx/jedi_vim_debug.py

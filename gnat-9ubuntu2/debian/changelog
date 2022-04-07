@@ -1,0 +1,223 @@
+gnat (9ubuntu2) focal; urgency=medium
+
+  * Build for riscv64.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 06 Apr 2020 09:36:24 +0200
+
+gnat (9ubuntu1) focal; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+    - Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 24 Feb 2020 22:23:11 +0100
+
+gnat (9) unstable; urgency=medium
+
+  * Reupload to unstable for gnat-9 transition.
+  * Standards-Version: 4.5.0. Vcs-Git: drop unneeded -b.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 23 Feb 2020 15:52:57 +0100
+
+gnat (9~exp1) experimental; urgency=medium
+
+  * Start the gnat-9 transition in experimental.
+  * Move VCS to salsa.debian.org.
+  * Debhelper 12. Rules-Requires-Root: no. Standards-Version 4.4.0.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Wed, 17 Jul 2019 23:00:25 +0200
+
+gnat (8.0.1ubuntu1) disco; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+    - Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 10 Nov 2018 23:09:58 +0100
+
+gnat (8.0.1) unstable; urgency=medium
+
+  * Rebuild in unstable for gnat-8 transition.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sat, 27 Oct 2018 15:09:43 +0200
+
+gnat (8.0.0) experimental; urgency=medium
+
+  * Depend on gnat-8, starting the gcc-8 transition in experimental.
+  * Drop lintian override for pedantic warning.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Mon, 07 May 2018 16:06:36 +0200
+
+gnat (7.1) unstable; urgency=medium
+
+  * Debhelper 11.
+  * Standards-Version: 4.1.4.
+  * Drop Homepage field. This is a native package.
+  * Update URI format for VCS-Mtn.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Thu, 03 May 2018 10:14:17 +0200
+
+gnat (7ubuntu1) artful; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+    - Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 12 Aug 2017 14:19:56 -0400
+
+gnat (7) unstable; urgency=medium
+
+  * Upload to unstable, making gcc-7 the default Ada compiler.
+  * Standards-Version: 4.0.1 (no changes).
+  * Debhelper 10. Drop explicit rules targets confusing dh.
+  * test/basic-compile: check that "hello world" compiles and runs.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Wed, 09 Aug 2017 16:08:53 +0200
+
+gnat (7~exp1) experimental; urgency=medium
+
+  * Depend on gnat-7, debugging the transition in experimental.
+  * Standards-Version: 4.0.0. Downgrade ARM and GPS to Suggests.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sat, 18 Feb 2017 11:53:19 +0100
+
+gnat (6.1ubuntu2) yakkety; urgency=medium
+
+  * gnat: Depend on gcc.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 21 Sep 2016 11:38:57 +0200
+
+gnat (6.1ubuntu1) yakkety; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+    - Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 31 May 2016 23:45:24 +0200
+
+gnat (6.1) unstable; urgency=medium
+
+  * Depend gnat >= 6.1, ensuring the same ALI checksum of standard library
+    sources for every policy-compliant Ada library.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Sun, 29 May 2016 00:02:18 +0200
+
+gnat (6ubuntu1) yakkety; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+    - Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 27 Apr 2016 09:57:06 +0200
+
+gnat (6) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Standards-Version: 3.9.8 (no changes)
+  * Override vcs-field-uses-insecure-uri lintian tag.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Mon, 25 Apr 2016 23:21:02 +0200
+
+gnat (6~exp1) experimental; urgency=medium
+
+  * Depend on gnat-6.
+  * Standards-Version: 3.9.7 (no changes).
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Wed, 09 Mar 2016 00:01:04 +0100
+
+gnat (5) experimental; urgency=medium
+
+  * Depend on gnat-5.
+  * Standards-Version: 3.9.6 (no changes).
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Thu, 22 Oct 2015 14:53:47 +0200
+
+gnat (4.9ubuntu2) xenial; urgency=medium
+
+  * Add s390x to the architecture list for the gnat binary package.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Mon, 14 Dec 2015 11:39:52 -0700
+
+gnat (4.9ubuntu1) utopic; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Build the gnat-doc package.
+  * Build gnat as an architecture dependent package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 02 May 2014 15:37:34 +0200
+
+gnat (4.9) unstable; urgency=medium
+
+  * Depend on gnat-4.9 on all architectures.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Thu,  1 May 2014 09:00:57 +0200
+
+gnat (4.6.1) unstable; urgency=medium
+
+  * Upgrades: debhelper 9, copyright 1.0, Standards 3.9.5, source 3.0.
+  * Uploaders: += myself.
+  * Architecture: any -> all.
+  * Let gnat-x.y handle gnatgcc link in order to ease transitions.
+  * Recommends: ada-reference-manual-2012. Closes: #682424.
+
+ -- Nicolas Boulenguez <nicolas@debian.org>  Tue, 04 Feb 2014 23:03:00 +0100
+
+gnat (4.6ubuntu4) trusty; urgency=medium
+
+  * Don't build the package on AArch64.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 03 Apr 2014 14:25:09 +0200
+
+gnat (4.6ubuntu3) trusty; urgency=medium
+
+  * Link to gcc-4.8 on arm64 and ppc64el.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 26 Mar 2014 22:10:44 +0100
+
+gnat (4.6ubuntu2) trusty; urgency=medium
+
+  * Depend on gnat-4.8 on arm64 and ppc64el.
+
+ -- Matthias Klose <doko@ubunut.com>  Fri, 27 Dec 2013 17:31:47 +0100
+
+gnat (4.6ubuntu1) precise; urgency=low
+
+  * Build gnat-doc.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 13 Oct 2011 17:12:32 +0200
+
+gnat (4.6) unstable; urgency=low
+
+  * Transition to gnat-4.6 for Debian 7 "Wheezy".
+  * debian/control (Breaks): remove.  This clause was made unnecessary
+    by the Debian Policy for Ada in Squeeze.
+    (Standards-Version): move to 3.9.2 with no changes required.
+  * debian/rules: symlink gnatgcc.1.gz to gnat.1.gz, not gcc-x.y.1.gz
+    (build-arch, build-indep): add empty, phony targets to appease lintian.
+  * debian/source.lintian-overrides: remove.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Tue,  6 Sep 2011 09:00:25 +0200
+
+gnat (4.4+1.1) unstable; urgency=low
+
+   * Non maintainer upload.
+   * Provide the /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.4.4 symlink, still
+     required by gnat-4.4, but not provided anymore by gcc-4.4-base.
+     Add it into the gnat package to avoid another gcc-4.4 upload.
+     Closes: #623382.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 19 Apr 2011 22:52:56 +0200
+
+gnat (4.4+1) unstable; urgency=low
+
+  * debian/rules (binary): Move all commands to binary-arch.
+    Closes: #555149.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun,  8 Nov 2009 22:36:56 +0100
+
+gnat (4.4) unstable; urgency=low
+
+  * New empty package that depends on the default Ada compiler
+    (split out from gcc-defaults).
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 25 Oct 2009 16:30:31 +0100

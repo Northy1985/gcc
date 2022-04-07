@@ -1,0 +1,22 @@
+* xref-docgen.adb:1115: warning: types for unchecked conversion have
+   different sizes
+
+* Bugs to solve
+
+** No GNAT switches in the project editor (#596385 reintroduced)
+
+   The Switches > Ada tab of the project editor (Project > Edit
+   Project Properties) should contain check boxes and option menus for
+   the GNAT switches.  In gnat-gps 4.3 these are defined in
+   /usr/share/gps/plug-ins/ada_support.py but in 5.0 they are now
+   generated at run time by parsing the output of "gnat make -h"; see
+   /usr/share/gps/plug-ins/gps_utils/gnat_rules.py.  This does not
+   work at the moment.
+
+   I have tried adding an empty
+   /usr/share/gps/plug-ins/gps_utils/gnat_switches.py to no avail.  It
+   is possible that additional Python packages (e.g. PyGtk) are
+   necessary for this functionality to work; in this case the fix is
+   to add the appropriate dependencies in debian/control.
+
+   This should be fixed with GPL-2016 and distrib/gnat_switches.py.

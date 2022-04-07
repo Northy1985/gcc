@@ -1,0 +1,135 @@
+Source: gnat-gps
+Section: devel
+Priority: optional
+Maintainer: Ludovic Brenta <lbrenta@debian.org>
+Uploaders: Xavier Grave <xavier.grave@csnsm.in2p3.fr>,
+ Nicolas Boulenguez <nicolas@debian.org>
+Build-Depends:
+ debhelper-compat (= 12),
+# Called by d/rules during both -arch and -indep builds.
+ python3,
+Build-Depends-Arch:
+ gnat,
+ gprbuild (>= 2017),
+# gprbuild removing auto.cgpr after the build:
+ libclang-dev,
+ libglib2.0-dev,
+ libgnatcoll18-dev,
+ libgnatcoll-python18-dev,
+ libgnatcoll-sqlite-bin,
+# d/rules uses gnatcoll_sqlite2ada
+ libgnatcoll-sqlite18-dev,
+ libgnatcoll-xref19-dev,
+ libgnatprj7-dev,
+# gnatcoll_extras/src/python_support_gtk.c:
+ libgtk-3-dev,
+ libgtkada19-dev,
+ libpython2.7-dev,
+ libtemplates-parser13-dev,
+ libxmlada-dom9-dev,
+ libxmlada-input9-dev,
+ libxmlada-sax9-dev,
+ libxmlada-unicode9-dev,
+ pkg-config,
+# gnatcoll_extras/src/python_support_gtk.c:
+ python-gi-dev,
+Build-Depends-Indep:
+ dh-sequence-sphinxdoc,
+# Sphinx uses graphs for Python inheritance trees, in gps.py for example.
+ graphviz,
+ latexmk,
+# Sphinx >= 1.6 uses the latexmk driver.
+ python3-six,
+# Some gps modules are imported by sphinx.
+ python3-sphinx,
+# other js libraries:
+ texlive-fonts-recommended,
+ texlive-latex-extra,
+# sphinx-doc requires iftex.sty:
+ texlive-plain-generic,
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/debian/gnat-gps
+Vcs-Git: https://salsa.debian.org/debian/gnat-gps.git
+Homepage: https://github.com/AdaCore/gps
+
+Package: gnat-gps
+# Gcc exhausts virtual address space on true 32 bits machines, see #913371.
+Architecture: any
+Depends: gnat-gps-common (=${source:Version}), ${shlibs:Depends}, ${misc:Depends},
+# Required to generate the GTK binding at run time.
+ gir1.2-gtk-3.0,
+# Required for any compilation.
+ gprbuild,
+# Required by the Python scripts describing the GUI.
+ python-gi,
+# libgnatcoll-sqlite-bin provides gnatinspect and gnat-gps runs it.
+ libgnatcoll-sqlite-bin,
+# Some gps modules are patched for python2&3.
+ python-six,
+Recommends:
+# See #659166:
+ gdb | gdb-minimal,
+ gnat,
+ gnat-gps-doc (= ${source:Version}),
+# Recommends: -doc because the welcome page displays documentation.
+ python-jedi,
+ python-pep8,
+Description: integrated development environment for C and Ada
+ GNAT Programming Studio is a complete integrated development environment
+ that gives access to a wide range of tools and integrates them smoothly.
+ .
+ GPS gives access to built-in file editing; HTML based help system;
+ complete compile/build/run cycle; intelligent source navigation;
+ project management; general graph technology giving access to many
+ different browsers such as source dependency, project dependency, call
+ graphs, etc.; fully integrated visual debugger, based on the GVD
+ technology, and enhanced for inclusion in GPS; generic version control
+ system, providing access to CVS, ClearCase, and possibly others in the
+ future; many other tools such as a visual comparison, automatic
+ generation of files, source reformatting.
+ .
+ GPS is fully customizable, providing several levels of customizations:
+ a first level, available through the preferences dialog; a second
+ level, which allows you to customize your menu items, tool bar and key
+ bindings; a third level, which allows you to automate processing
+ through scripts; and a fourth level, which allows any kind of very
+ specific or tight integration, due to the open nature of GPS, and to
+ its architecture.
+ .
+ GPS also integrates with existing editors such as Emacs and Vi.
+ .
+ This package also provides related command line tools:
+  - gnatdoc extracts documentation from comments in Ada sources
+  - gnatspark runs a spark tool according to a GNAT project
+  - gps_cli is a command-line interface for gnat-gps
+
+Package: gnat-gps-doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${sphinxdoc:Depends}
+Built-Using: ${sphinxdoc:Built-Using}
+Recommends: ada-reference-manual-2012
+Section: doc
+Description: integrated development environment for C and Ada (documentation)
+ GNAT Programming Studio is a complete integrated development environment
+ that gives access to a wide range of tools and integrates them smoothly.
+ .
+ This package contains the documentation in HTML and PDF formats.
+ This documentation consists of:
+  - the GPS Tutorial: building Hello, World with the GPS
+  - a User's Guide: using the GPS for multi-language projects
+  - a Programmer's Manual: extending the GPS with new modules
+  - an user's guide for the gnatdoc command line tool
+
+Package: gnat-gps-common
+Architecture: all
+Depends: ${misc:Depends},
+ libjs-prototype,
+ libjs-scriptaculous,
+Description: integrated development environment for C and Ada (common files)
+ GNAT Programming Studio is a complete integrated development environment
+ that gives access to a wide range of tools and integrates them smoothly.
+ .
+ This package contains images, templates and plug-ins required at run time
+ by GPS.

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=GNAT Programming Studio
+Comment=Integrated Development Environment
+Exec=/usr/bin/gnat-gps
+Icon=gps_32.png
+Terminal=false
+Categories=Development;IDE
+Keywords=ide;editor;ada;c

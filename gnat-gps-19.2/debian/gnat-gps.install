@@ -1,0 +1,6 @@
+obj/gnat-gps usr/bin
+obj/gnatdoc usr/bin
+obj/gps_cli usr/bin
+
+debian/gnat-programming-studio.desktop  usr/share/applications
+# References a symlink to the icon.

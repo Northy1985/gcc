@@ -1,0 +1,13 @@
+#!/bin/sh
+set -C -e -u
+cd "$AUTOPKGTEST_TMP"
+
+cat > p.adb <<EOF
+with Ada.Text_IO;
+procedure P is
+begin
+   Ada.Text_IO.Put_Line ("Hello");
+end P;
+EOF
+gnatmake -eS p.adb
+./p

@@ -1,0 +1,13 @@
+Document: gnat-programming-studio-release-notes
+Title: GNAT Programming Studio Release Notes
+Author: AdaCore
+Abstract: This document describes the new features brought by the
+ latest version of the GNAT Programming Studio.
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/gnat-gps/ReleaseNotes.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/gnat-gps/html/release_notes/index.html
+Files: /usr/share/doc/gnat-gps/html/release_notes/*

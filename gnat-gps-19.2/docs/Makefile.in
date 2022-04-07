@@ -1,0 +1,63 @@
+prefix = @prefix@
+docdir = $(prefix)/share/doc/gps
+sharedir = $(prefix)/share/gps
+
+MKDIR = mkdir -p
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+CONVERT = convert
+CP = cp -p
+
+all: ug tutorial gps_pg relnotes relnotes_17 relnotes_62 gnatdoc
+static:
+
+gps_pg:
+	make -C programmers_guide html
+
+relnotes:
+	make -C release_notes singlehtml
+
+relnotes_17:
+	make -C release_notes_17 singlehtml
+
+relnotes_62:
+	make -C release_notes_62 singlehtml
+
+ug:
+	make -C users_guide html latexpdf
+
+gnatdoc:
+	make -C ../gnatdoc/docs/users_guide html latexpdf
+
+.PHONY: tutorial
+tutorial:
+	make -C tutorial html
+
+install:
+	$(MKDIR) $(docdir)
+	$(MKDIR) $(docdir)/html
+	$(MKDIR) $(docdir)/pdf
+	-$(INSTALL_DATA) gps-welcome.html $(docdir)/html
+	-$(CP) -r users_guide/GPS/ $(sharedir)/support/ui/GPS_doc
+
+	${MKDIR} $(docdir)/html/users_guide/
+	-${CP} -r users_guide/_build/html/* $(docdir)/html/users_guide/
+	-${CP} users_guide/_build/latex/GPS.pdf $(docdir)/pdf/gps.pdf
+
+	${MKDIR} $(docdir)/html/tutorial/
+	-${CP} -r tutorial/_build/html/* $(docdir)/html/tutorial/
+
+	${MKDIR} $(docdir)/html/release_notes/
+	-${CP} -r release_notes/build/singlehtml/* $(docdir)/html/release_notes/
+	-${CP} -r release_notes/*png $(docdir)/html/release_notes/
+
+	-$(INSTALL_DATA) gps-splash.png $(sharedir)
+	-${INSTALL_DATA} gps_index.xml ${docdir}/html
+	-${INSTALL_DATA} help_index.html ${docdir}/html
+
+	${MKDIR} $(docdir)/html/gnatdoc/
+	-${CP} -r ../gnatdoc/docs/users_guide/_build/html/* $(docdir)/html/gnatdoc/
+	-${CP} ../gnatdoc/docs/users_guide/_build/latex/gnatdoc.pdf $(docdir)/pdf/
+
+clean:
+	-${RM} -rf */_build/

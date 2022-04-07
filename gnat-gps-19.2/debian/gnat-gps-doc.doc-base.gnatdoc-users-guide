@@ -1,0 +1,14 @@
+Document: gnatdoc-users-guide
+Title: User's Guide for the gnatdoc command line tool
+Author: AdaCore
+Abstract: GNATdoc is a documentation tool for Ada which processes
+ source files, extracts documentation directly from the sources, and
+ generates annotated HTML files.
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/gnat-gps/gnatdoc.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/gnat-gps/html/gnatdoc/index.html
+Files: /usr/share/doc/gnat-gps/html/gnatdoc/*

@@ -1,0 +1,16 @@
+# Mostly documentation, but upstream renames some directories.
+
+# Referenced from
+# help/src/help_module.adb
+# docs/gps-welcome.html
+# docs/gps_index.xml
+docs/gps_index.xml                      usr/share/doc/gnat-gps/html
+docs/help_index.html                    usr/share/doc/gnat-gps/html
+
+docs/programmers_guide/_build/html/*    usr/share/doc/gnat-gps/html/programmers_guide
+docs/tutorial/_build/html/*             usr/share/doc/gnat-gps/html/tutorial
+docs/users_guide/_build/html/*          usr/share/doc/gnat-gps/html/users_guide
+docs/release_notes/build/html/*         usr/share/doc/gnat-gps/html/release_notes
+docs/release_notes_17/build/html/*      usr/share/doc/gnat-gps/html/release_notes_17
+docs/release_notes_62/build/html/*      usr/share/doc/gnat-gps/html/release_notes_62
+gnatdoc/docs/users_guide/_build/html/*  usr/share/doc/gnat-gps/html/gnatdoc

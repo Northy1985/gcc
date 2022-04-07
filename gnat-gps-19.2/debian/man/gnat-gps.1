@@ -1,0 +1,76 @@
+.\" From docs/users_guide/environment.rst
+
+.TH GNAT-GPS 1 "21 MAY 2016" "GNU Ada Tools" "GNAT Programming Studio"
+.SH NAME
+gnat\-gps \- an integrated development environment for various languages
+.SH SYNOPSIS
+\fBgnat-gps\fR [\|\fBoptions\fR\|] [\|\fB\-P\fIproject\-file\fR\|]
+[\|[\|+\fIline\fR\|] \fIsource1\fR\| .\|.\|.\|]
+.SH DESCRIPTION
+GPS is a complete integrated development environment.  It integrates with a
+wide range of tools, providing easy access to each. It integrates
+especially well with AdaCore's tools but can easily be extended to work
+with other tools by writing small plug-ins in Python.
+.TP
+\fB\-\-help\fR
+Show this help message and exit
+.TP
+\fB\-\-version\fR
+Show the GPS version and exit
+.TP
+\fB\-\-debug\fR[\|\fB=\fIprogram\fR\|]
+Start a debug session and optionally load the
+program with the given arguments
+.TP
+\fB\-\-debugger \fIdebugger\fR
+Specify the debugger's command line
+.TP
+\fB\-\-hide\fR
+Hide GPS main window
+.TP
+\fB\-\-host=\fItools_host\fR
+Use \fItools_host\fR to launch tools (e.g. gdb)
+.TP
+\fB\-\-target=\fITARG\fB:\fIPRO\fR
+Load program on machine \fITARG\fR using protocol \fIPRO\fR
+.TP
+\fB\-\-load=\fIlang\fB:\fIfile\fR
+Execute an external \fIfile\fR written in the language \fIlang\fR
+.TP
+\fB\-\-eval=\fIlang\fB:script\fR
+Execute an in-line \fIscript\fR written in the language \fIlang\fR
+.TP
+\fB\-X\fIVAR\fB=\fIVALUE\fR
+Specify a value for an external project variable
+.TP
+\fB\-\-readonly\fR
+Open all files in read-only mode
+.TP
+\fB\-\-server=\fIport\fR
+Start GPS in server mode, opening a socket on the given port
+.TP
+\fB\-\-tracelist\fR
+Output the current configuration for logs
+.TP
+\fB\-\-traceon=\fIname\fR
+Activate the logs for a given module
+.TP
+\fB\-\-traceoff=\fIname\fR
+Deactivate the logs for a given module
+.TP
+\fB\-\-tracefile=\fIfile\fR
+Parse an alternate configuration \fIfile\fR for the logs
+.SH "SEE ALSO"
+\fBgnat\fR (1),
+\fBgprbuild\fR (1),
+and various user guides in the \fI/usr/share/doc/gnat-gps\fR directory
+if the \fIgnat-gps-doc\fR Debian package is installed on your system.
+.SH AUTHOR
+The GNAT Programming Studio has been written and is maintained by Ada
+Core Technologies. If you are interested in getting commercial support
+for this software, please contact sales@gnat.com.
+
+This manual page has been written by
+Ludovic Brenta <ludovic@ludovic-brenta.org>
+and Nicolas Boulenguez <nicolas@debian.org>
+for Debian GNU/Linux.
