@@ -1,0 +1,38 @@
+Source: ices2
+Section: sound
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>
+Uploaders: Guillaume Pellerin <yomguy@altern.org>,
+ Romain Beauxis <toots@rastageeks.org>,
+ Ying-Chun Liu <grandpaul@gmail.com>,
+ Jonas Smedegaard <dr@jones.dk>,
+ Unit 193 <unit193@ubuntu.com>
+Build-Depends: cdbs (>= 0.4.123~),
+ autotools-dev,
+ devscripts,
+ libtool,
+ automake,
+ autoconf,
+ debhelper,
+ dh-buildinfo,
+ libogg-dev,
+ libvorbis-dev,
+ libshout3-dev,
+ libxml2-dev,
+ libasound2-dev [linux-any],
+ pkg-config
+Vcs-Git: https://anonscm.debian.org/git/pkg-multimedia/ices2.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-multimedia/ices2.git
+Standards-Version: 3.9.7
+Homepage: http://www.icecast.org/ices.php
+
+Package: ices2
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, netbase
+Suggests: icecast2
+Description: Ogg Vorbis streaming source for Icecast 2
+ IceS 2.x is used to source Icecast 2 streaming audio
+ servers with Ogg Vorbis audio streams.  It supports both
+ live audio input from a soundcard and re-encoding of Ogg
+ Vorbis files from a playlist.

@@ -1,0 +1,74 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+# Copyright © 2003 Keegan Quinn <ice@thebasement.org>
+# Copyright © 2004-2008, 2011-2013, 2016 Jonas Smedegaard <dr@jones.dk>
+# Description: Main Debian packaging script for IceS
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+DEB_AUTO_UPDATE_LIBTOOL = pre
+DEB_AUTO_UPDATE_ACLOCAL = ,
+DEB_AUTO_UPDATE_AUTOCONF = ,
+DEB_AUTO_UPDATE_AUTOHEADER = ,
+DEB_AUTO_UPDATE_AUTOMAKE = ,
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+# Build-depend unversioned on debhelper
+#  TODO: Drop when adopted in cdbs
+CDBS_BUILD_DEPENDS_rules_debhelper_v9 = debhelper
+
+# Upstream requirements
+CDBS_BUILD_DEPENDS += , libogg-dev, libvorbis-dev, libshout3-dev, libxml2-dev, libasound2-dev [linux-any], pkg-config
+
+DEB_CONFIGURE_EXTRA_FLAGS = --program-transform-name="s/ices$$/ices2/"
+DEB_INSTALL_EXAMPLES_ices2 = conf/*.xml
+DEB_INSTALL_MANPAGES_ices2 = debian/ices2.1
+DEB_COMPRESS_EXCLUDE = .xml
+
+# (re)create autotools files from scratch during build
+auxdir = .
+macrodir = m4
+makefiledirs = . conf doc src src/avl src/log src/thread src/timing
+files_autotools_core = $(auxdir)/config.guess $(auxdir)/config.sub
+stems_m4_libtool = libtool ltoptions ltsugar ltversion lt~obsolete
+files_libtool = $(auxdir)/ltmain.sh $(stems_m4_libtool:%=$(macrodir)/%.m4)
+stems_aux_autoconf = compile install-sh missing
+files_autoconf = aclocal.m4 configure $(stems_aux_autoconf:%=$(auxdir)/%)
+files_automake = $(auxdir)/depcomp $(makefiledirs:=/Makefile.in)
+files_autoheader = config.h.in
+files_configure = config.log
+files_autotools = $(files_autotools_core) $(files_libtool)
+files_autotools += $(files_aclocal) $(files_autoconf) $(files_automake)
+files_autotools += $(files_autoheader) $(files_configure)
+DEB_ACLOCAL_ARGS = -Im4 --install --force
+DEB_AUTOMAKE_ARGS = --add-missing --copy --foreign --force
+DEB_MAKE_CLEAN_TARGET = distclean
+files_autotools += $(macrodir)/pkg.m4
+DEB_UPSTREAM_CRUFT_MOVE = $(filter-out $(patsubst %,$(macrodir)/%.m4,$(stems_m4_libtool) pkg),$(files_autotools))
+makefile-clean::
+	rm -rf autom4te.cache
+	rm -f $(filter-out $(DEB_UPSTREAM_CRUFT_MOVE) $(files_autotools_core),$(files_autotools))
+clean::
+	rm -f $(filter-out $(DEB_UPSTREAM_CRUFT_MOVE),$(files_autotools_core))
+	test "$(auxdir)" = . || test ! -d $(auxdir) || rmdir --ignore-fail-on-non-empty $(auxdir)
+
+# Debian places documentation below /usr/share/doc
+binary-post-install/ices2::
+	mv debian/ices2/usr/share/ices debian/ices2/usr/share/doc/ices2/html
+	rm -rf debian/ices2/usr/share/doc/ices2/html/ices-roar.xml \
+		debian/ices2/usr/share/doc/ices2/html/ices-playlist.xml \
+		debian/ices2/usr/share/doc/ices2/html/ices-oss.xml \
+		debian/ices2/usr/share/doc/ices2/html/ices-alsa.xml

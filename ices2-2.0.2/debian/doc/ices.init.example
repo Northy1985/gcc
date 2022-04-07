@@ -1,0 +1,78 @@
+#! /bin/sh
+#
+# ices2         init script for ices2
+#               doc : http://www.icecast.org/docs/ices-2.0.0/
+#
+# Author:       Okiwi.org (by Stephane Blondon)
+#
+# Version:      @(#)ices2  0.4.1  2006-Jun-26 developpers@okiwi.org
+#
+
+set -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+DESC="audio streaming server"
+NAME=ices2
+DAEMON=/usr/bin/${NAME}
+SCRIPTNAME=/etc/init.d/${NAME}
+
+
+test -x ${DAEMON} || exit 0
+
+# Check if config file is ok.
+if [ -r /etc/ices2.conf ]
+then
+       . /etc/ices2.conf       #now, the script knows $XMLFILE
+else
+      echo "/etc/ices2.conf not found (or not readable). Exit." >&2
+      exit 0
+fi
+
+if [ -z ${XMLFILE} ]
+then
+      echo "Bad parameter for XMLFILE : check /etc/ices2.conf. Exit." >&2
+      exit 0
+fi
+
+#
+#       Function that starts the daemon/service.
+#
+d_start() {
+       start-stop-daemon --start --quiet \
+              --exec ${DAEMON} -- ${XMLFILE}
+}
+
+#
+#       Function that stops the daemon/service.
+#
+d_stop() {
+      start-stop-daemon --stop --quiet --oknodo \
+              --name ${NAME}
+}
+
+case "$1" in
+ start)
+      echo -n "Starting ${DESC}: ${NAME}"
+      d_start
+      echo "."
+      ;;
+ stop)
+      echo -n "Stopping ${DESC}: ${NAME}"
+      d_stop
+      echo "."
+      ;;
+ restart|force-reload)
+      echo -n "Restarting ${DESC}: ${NAME}"
+      d_stop
+      sleep 1
+      d_start
+      echo "."
+      ;;
+ *)
+      echo "Usage: ${SCRIPTNAME} {start|stop|restart|force-reload}" >&2
+      exit 1
+      ;;
+esac
+
+exit 0
+

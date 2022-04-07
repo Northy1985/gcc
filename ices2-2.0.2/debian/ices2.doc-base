@@ -1,0 +1,10 @@
+Document: ices2
+Title: IceS v2.0 Documentation
+Author: the icecast team <team@icecast.org>
+Abstract: This manual describes setting up and using the
+ IceS streamer to feed Icecast2 with Ogg Vorbis content.
+Section: Sound
+
+Format: HTML
+Index: /usr/share/doc/ices2/html/index.html
+Files: /usr/share/doc/ices2/html/*

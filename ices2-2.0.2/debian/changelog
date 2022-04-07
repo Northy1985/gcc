@@ -1,0 +1,430 @@
+ices2 (2.0.2-2build2) eoan; urgency=medium
+
+  * No-change upload with strops.h and sys/strops.h removed in glibc.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 05 Sep 2019 10:54:14 +0000
+
+ices2 (2.0.2-2build1) bionic; urgency=high
+
+  * No change rebuild to pick up -fPIE compiler default
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Tue, 03 Apr 2018 12:28:35 +0000
+
+ices2 (2.0.2-2) unstable; urgency=medium
+
+  * Update watch file:
+    + Bump file format to version 4.
+    + Simplify version regex.
+    + Use uupdate.
+  * Drop CDBS get-orig-source target: Use "gbp import-orig --uscan"
+    instead.
+  * Use unversioned autotools.
+    Build-depend on automake (not automake1.11.
+    Tighten to build-depend versioned on cdbs.
+  * Remove debian/source/local-options: abort-on-upstream-changes and
+    unapply-patches are default in dpkg-source since 1.16.1.
+  * Update copyright info:
+    + Use License-Grant and License-Reference fields.
+      Thanks to Ben Finney.
+    + Use license shortnames FSFUL FSFULLR FSFULLR~Makefile.in.
+    + Extend copyright of packaging to cover recent years.
+  * Add lintian override regarding license in License-Reference field.
+    See bug#786450.
+  * Bump debhelper compatibility level to 9.
+  * Add lintian override regarding debhelper 9.
+  * Fix (re)create autotools files from scratch during build.
+    Closes: Bug#818420. Thanks to Martin Michlmayr.
+  * Declare compliance with Debian Policy 3.9.7.
+  * Modernize Vcs-* field URLs.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 25 Mar 2016 00:21:07 +0100
+
+ices2 (2.0.2-1) unstable; urgency=medium
+
+  * ACK NMU from Eric Dorland, thanks.
+  * Imported Upstream version 2.0.2. (Closes: #702063, #255417)
+    - Drop patches applied upstream.
+  * Add myself to uploaders.
+  * Bump debhelper compatibility level to 8.
+  * Bump standards-version to 3.9.6.
+  * Add a versioned build-dep on debhelper, silences a lintian warning.
+  * d/control: Update Vcs-Browser URL for alioth cgit.
+  * d/control: Use canonical vcs-* fields.
+  * d/rules: Update upstream-tarball hints for new upstream source.
+  * d/rules: Remove duplicate examples from html docs.
+  * Update d/copyright and d/copyright_hits.
+
+ -- Unit 193 <unit193@ubuntu.com>  Thu, 30 Apr 2015 11:31:51 +0200
+
+ices2 (2.0.1-13.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * debian/control, debian/rules: Switch to automake1.11. (Closes:
+    #724393)
+
+ -- Eric Dorland <eric@debian.org>  Sun, 16 Feb 2014 15:11:08 -0500
+
+ices2 (2.0.1-13) unstable; urgency=low
+
+  * Add patch 1004 to fix explicitly link against libogg, needed with
+    recent GCC.
+    Fixes FTBFS on hurd. Thanks to Ron Lee.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 05 Jun 2012 20:30:08 +0200
+
+ices2 (2.0.1-12) unstable; urgency=low
+
+  * Use anonscm.debian.org for Vcs-Browser field.
+  * Extend copyright of Debian packaging to cover recent years.
+  * Stop build-depending on libroar-dev or suggesting roaraudio-server.
+    Requested by Ron Lee.
+  * Really build-depend unversioned on libogg-dev, libvorbis-dev and
+    libshout3-dev, as intended for 2.0.1-11.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 05 Jun 2012 16:21:36 +0200
+
+ices2 (2.0.1-11) unstable; urgency=low
+
+  * Update patch 0001 to newer snapshot of upstream development: r18199
+    on 2012-02-13.
+    Closes: bug#659827.
+  * Update copyright file:
+    + Add SVN URL to Source field.
+    + Add copyright holders for upstream patch.
+  * Update package relations:
+    + Relax to build-depend unversioned on libogg-dev, libvorbis-dev and
+      libshout3-dev: Needed versions satisfied even in oldstable.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 27 Mar 2012 23:14:27 +0200
+
+ices2 (2.0.1-10) unstable; urgency=low
+
+  [ Jonas Smedegaard ]
+  * Add description hint to header of rules file.
+  * Fix properly quote licensing section GPL-2+ in copyright file (not
+    bogusly repeat GPL-2).
+  * Bump debhelper compat level to 7.
+  * Bump standards-version to 3.9.3.
+  * Update copyright file:
+    + Rewrite using copyright format 1.0.
+    + Fix add verbatim MIT license for install.sh.
+    + Shorten GPL and LGPL comments, and quote license names.
+  * Update package relations:
+    + Relax build-depend unversioned on debhelper (needed version
+      satisfied even in oldstable).
+
+  [ Alessio Treglia ]
+  * Replace hardcoded list of non-Linux archs with linux-any.
+    Closes: bug#634702. Thanks to Robert Millan.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 03 Mar 2012 15:35:21 +0100
+
+ices2 (2.0.1-9) unstable; urgency=low
+
+  [ Alessio Treglia ]
+  * Change Maintainer since the Debian Icecast team is merging with
+    Multimedia Maintainers.
+  * Add git-buildpackage config file.
+
+  [ Jonas Smedegaard ]
+  * Drop local CDBS snippets: All included in CDBS now.
+  * Avoid use of svn-upgrade in watch file.
+  * Ease building with git-buildpackage:
+    + Git-ignore quilt .pc dir.
+    + Add dpkg-source local-options hints.
+  * Extend copyright years in rules file, and add licensing header.
+  * Drop now unneeded README.cdbs-tweaks.
+  * Bump standards-version to 3.9.1.
+  * Tighten build-dependency handling.
+  * Rewrite copyright file using Bazaar rev. 137 draft of DEP5 format.
+  * Update email address of Michael Smith in copyright file.
+  * Add patch 0001 to sync with most recent upstream snapshot.
+  * Build-depend on libroar-dev, and suggest roaraudio-server.
+    Closes: bug#591636. Thanks to Philipp Schafft.
+  * Add patch 1001 to allow 'allow-repeats' setting when checking ogg
+    serial.
+    Closes: bug#463351. Thanks to C. Chad Wallace.
+  * Add patch 1002 to fix bogus mentions of OSS in comment lines of ALSA
+    config.
+    Closes: bug#514489. Thanks to Kingsley G. Morse Jr.
+  * Add patch 1003 to avoid automake'ing stripped Makefile in debian
+    subdir.
+  * Add back ices2 manpage from debian subdir of upstream tarball
+    (otherwise stripped by our change to source format 3.0).
+  * Depend on ${misc:Depends}. Thanks to lintian.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 01 Jan 2011 21:59:19 +0100
+
+ices2 (2.0.1-8) unstable; urgency=low
+
+  * Update local cdbs snippets:
+    + Always do copyright-check, but only warn by default.
+  * Update debian/copyright-hints.
+  * Bump debhelper compatibility level to 6.
+  * Semi-auto-update debian/control to update build-dependencies:
+      DEB_MAINTAINER_BUILD=yes fakeroot debian/rules clean
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 24 Jun 2008 02:45:43 +0200
+
+ices2 (2.0.1-7) unstable; urgency=low
+
+   [ Romain Beauxis ]
+     * Added init script example
+       Closes: #375577
+     * Updated Uploaders field in debian/control
+     * Made copyright check optional, add documentation
+     Closes: #442601
+     * Added a special variable to enable maintainer mode builds,
+       with, for now, copyright check and control file update. Use:
+         DEB_MAINTAINER_BUILD=yes (svn|dpkg)-buildpackage (...)
+       and similar..
+     * Bumped standards to 3.7.3 (no changes)
+     * Updated doc-base section from App/Sound to Sound
+
+  [ Jonas Smedegaard ]
+     * Update local cdbs snippets:
+       + Major improvements to update-tarball (but none of them affecting
+         this current packaging).
+       + Major improvements to copyright-check, including new versioned
+         build-dependency on devscripts.  Update debian/copyright_hints.
+       + Drop buildcore.mk override.  Set DEB_AUTO_UPDATE_DEBIAN_CONTROL
+         directly instead when needed.
+       + Add debian/README.cdbs-tweaks
+     * Drop leading XS- from Vcs-* fields in debian/control.
+     * Fix watch file to use svn-upgrade (not uupdate).
+     * Semi-auto-update debian/control to update build-dependencies:
+       DEB_AUTO_UPDATE_DEBIAN_CONTROL=yes fakeroot debian/rules clean
+
+ -- Romain Beauxis <toots@rastageeks.org>  Sat, 12 Apr 2008 01:45:52 +0100
+
+ices2 (2.0.1-6) unstable; urgency=low
+
+  * Add XS-Vcs-Svn and XS-Vcs-Browser fields to debian/control.
+  * Move Homepage to own field (from pseudo-field in long description).
+  * Update CDBS tweaks:
+    + Add upstream-tarball.mk to implement get-orig-source target.
+    + Replace auto-update.mk with overloading buildcore.mk.
+    + Emit list of suspects if new copyrights are found.
+    + Check for copyrights at pre-build (at clean we might run before
+      actual cleanup has finished).
+    + semi-auto-update automake (in addition to other autotools).
+    + document the tweaks in debian/README.cdbs-tweaks.
+  * Update watch file to version 3, and use us download site.
+  * Resolve all build-dependencies using cdbs, and cleanup duplicates.
+  * Bump up to using automake1.10 (from 1.7).
+  * Bump up to using debhelper compatibility level 5 (from 4).
+  * Semi-auto-update debian/control:
+      DEB_BUILD_OPTIONS=cdbs-autoupdate fakeroot debian/rules pre-build
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 29 Sep 2007 13:27:00 +0200
+
+ices2 (2.0.1-5) unstable; urgency=low
+
+  * Package is now team-maintained!
+    + Debian Icecast team <pkg-icecast-devel@lists.alioth.debian.org>
+      maintains the package, with me as uploader.
+    + If you want to help improve the package or want other Icecast-
+      related packages maintained here then drop an email to the above
+      mailinglist!
+  * Move auto-update of debian/control out in reusable cdbs snippet.
+  * Add local cdbs snippet copyright-check.mk.
+  * Minor update to existing cdbs snippet buildinfo (better namespace).
+  * Minor adjustments to debian/copyright:
+    + Strip unneeded FSF address, to please lintian
+    + Add copyright and licensing info on src/timing/ (LGPL)
+  * Mention homepage (not website) in long description.
+  * Auto-update debian/control, and manually strip build-essential from
+    build-dependencies to not upset ftp-masters.
+  * Bump standards-version to 3.7.2 (no changes needed).
+  * Enable cdbs relibtoolization, fixing linkage problem causing FTBFS.
+    Closes: bug#378494 (thanks to Julien Danjou <acid@debian.org>).
+  * Exclude libasound-dev build-dependency, fixing FTBFS on non-linux
+    ports. Closes: bug#377888 (thanks to Petr Salinger
+    <Petr.Salinger@seznam.cz>).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 17 Jul 2006 06:18:38 +0200
+
+ices2 (2.0.1-4) unstable; urgency=low
+
+  * Raise to standards version 3.6.2 (no changes needed).
+  * Only se cdbs debian/control auto-build when environment includes
+    DEB_BUILD_OPTIONS=update.
+  * Auto-update build-dependencies (and manually rip out build-essential
+    buggily sneaking in).
+  * Fix watch file by simplifying it (seems uscan wrongly parse it as a
+    newer version format).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 13 Jul 2005 17:28:57 +0200
+
+ices2 (2.0.1-3) unstable; urgency=low
+
+  * Drop netbase dependency again (how embarrasing: confused this and
+    the icecast2 package).
+  * Add README.Debian with note on Debian location of docs and examples
+    (for those getting confused by upstream note). Closes: bug#244061).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu,  2 Jun 2005 15:02:29 +0200
+
+ices2 (2.0.1-2) unstable; urgency=high
+
+  * Depend on netbase.
+  * Set urgency=high as package fails to install/remove with netbase not
+    present.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu,  2 Jun 2005 13:42:43 +0200
+
+ices2 (2.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add copyright info to debian/rules.
+  * Update upstream source URL from svn... to downloads.xiph.org.
+  * Enable cdbs config auto-update.
+  * Build-depend on pkg-config.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 31 Mar 2005 14:41:05 +0200
+
+ices2 (2.0.0-3) unstable; urgency=high
+
+  * Fix watch file.
+  * Use generic (but unofficial) buildinfo cdbs snippet.
+  * Update URL for upstream source in debian/copyright.
+  * Add website URL to long description.
+  * Set urgency=high to hopefully get this into sarge in time (the
+    changes are small but valuable).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu,  4 Nov 2004 02:10:14 +0100
+
+ices2 (2.0.0-2) unstable; urgency=low
+
+  * Rebuild to have m68k autobuilder use a non-broken libxml.
+  * Standards-Version: 3.6.1 (no changes needed).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri,  2 Jul 2004 19:23:47 +0200
+
+ices2 (2.0.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Move documentation below /usr/share/doc. Closes Bug#244061 (thanks
+    to Alexander Dreweke <Alexander.H.Dreweke@ce.stud.uni-erlangen.de>).
+  * Register documentation with doc-base.
+  * Mention the name from documentation (IceS) in long description.
+  * Build-depend on libasound2-dev to enable ALSA support.
+  * Tell debhelper not to compress xml files (used in documentation).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 16 Apr 2004 16:06:08 +0200
+
+ices2 (1.9+2.0beta4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Taking over maintainership until Keegan Quinn really enters Debian.
+  * Rewrite debian/copyright:
+    + Note the upstream package name.
+    + Drop Debian-related info also in debian/changelog.
+    + Update location of upstream source.
+    + Replace general copyright and license info (mix of LGPL and GPL,
+      not GPL only).
+  * Let "configure --program-transform-name" rename ices to ices2.
+  * Keep debian/rules comments from showing during build.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 26 Jan 2004 16:20:01 +0100
+
+ices2 (1.9+2.0beta2+20030802-1) unstable; urgency=low
+
+  * Added a 'watch' file to automate tracking of updates.
+  * Now uses dh-buildinfo to store information about the package build
+    environment.  Added a Build-Dependancy to dh-buildinfo.
+  * Removed cdbs/autotools-vars.mk, from cdbs CVS, because a new release
+    was made.
+  * Thanks to Jonas Smedegaard for sponsoring this package, and
+    providing many good suggestions.
+
+ -- Keegan Quinn <ice@thebasement.org>  Sat,  2 Aug 2003 21:12:59 -0700
+
+ices2 (1.9+2.0beta2+20030721-1.1) unstable; urgency=low
+
+  * NMU by sponsor (still closes: Bug#185650).
+  * Define manpage and example files within debian/rules.
+  * Add build-dependency on libasound2-dev.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 23 Jul 2003 06:25:51 +0200
+
+ices2 (1.9+2.0beta2+20030721-1) unstable; urgency=low
+
+  * New daily snapshot.
+  * Switch to cdbs; added Build-Dependancy to cdbs, and increased
+    debhelper version requirement as recommended by cdbs README.
+  * Use cdbs autotools-vars.mk from CVS to avoid cross-compiling on same
+    host.
+  * Updated to Standards-Version 3.6.0.  No changes required.
+  * Added a Suggests to icecast2.
+  * Thanks to Jonas Smedegaard for sponsoring this package.
+    Closes: #185650.
+
+ -- Keegan Quinn <ice@thebasement.org>  Mon, 21 Jul 2003 20:35:59 -0700
+
+ices2 (1.9+2.0beta2+20030714-0.1) unstable; urgency=low
+
+  * New daily snapshot build.
+  * Renamed source and binary packages to ices2 from ices, as well as
+    installed binary and manual page.
+  * Updated versioning scheme so the final 2.0 release can be numbered 
+    like 2.0-1, without an epoch.
+  * Conflicts: and Replaces: ices (2.0.cvs030704-0.1), hopefully 
+    facilitating automatic upgrades from the old package names.
+
+ -- Keegan Quinn <ice@thebasement.org>  Mon, 14 Jul 2003 16:20:53 -0700
+
+ices (2.0.cvs030704-0.1) unstable; urgency=low
+
+  * Constructed a build script to completely automate the construction
+    of the 'pristine' tarball from CVS.  This doesn't really effect the
+    contents of the package, just makes it easier for me to rebuild.
+  * New CVS source.
+
+ -- Keegan Quinn <ice@thebasement.org>  Fri,  4 Jul 2003 03:30:53 -0700
+
+ices (2.0.cvs030403-0.1) unstable; urgency=low
+
+  * New CVS source.
+
+ -- Keegan Quinn <ice@thebasement.org>  Thu,  3 Apr 2003 16:14:49 -0800
+
+ices (2.0.cvs030401-0.1) unstable; urgency=low
+
+  * New CVS source.
+
+ -- Keegan Quinn <ice@thebasement.org>  Tue,  1 Apr 2003 10:27:44 -0800
+
+ices (2.0.cvs030327-0.4) unstable; urgency=low
+
+  * Completed manual page.  Packages are now ready for public testing. 
+
+ -- Keegan Quinn <ice@thebasement.org>  Fri, 28 Mar 2003 12:43:07 -0800
+
+ices (2.0.cvs030327-0.3) unstable; urgency=low
+
+  * Next attempt at the manual page. 
+
+ -- Keegan Quinn <ice@thebasement.org>  Fri, 28 Mar 2003 11:40:35 -0800
+
+ices (2.0.cvs030327-0.2) unstable; urgency=low
+
+  * Included example configurations in packaging.
+  * Initial attempt at a manual page.
+
+ -- Keegan Quinn <ice@thebasement.org>  Fri, 28 Mar 2003 11:25:27 -0800
+
+ices (2.0.cvs030327-0.1) unstable; urgency=low
+
+  * New CVS source.
+  * Updated copyright file and control description, per suggestions from
+    Jack Moffitt <jack@xiph.org>.
+
+ -- Keegan Quinn <ice@thebasement.org>  Thu, 27 Mar 2003 12:05:51 -0800
+
+ices (2.0.cvs030320-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Keegan Quinn <ice@thebasement.org>  Thu, 20 Mar 2003 13:24:59 -0800
+

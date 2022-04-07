@@ -1,0 +1,8 @@
+Ices2 for Debian
+================
+
+Documentation is below /usr/share/doc/ices2/html (and registered with
+doc-base as well), and examples are below /usr/share/doc/ices2/examples.
+
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu,  2 Jun 2005 14:57:48 +0200
